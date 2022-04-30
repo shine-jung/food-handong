@@ -1,15 +1,17 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Detail from "./routes/Detail";
+import { Routes, Route } from "react-router-dom";
+import Login from "./routes/Login";
 import Home from "./routes/Home";
+import Detail from "./routes/Detail";
 
-function App() {
+function App({ auth }) {
   return (
-    <Router>
+    <div>
       <Routes>
+        <Route path="/" element={<Login auth={auth} />} />
+        <Route path="/home" element={<Home auth={auth} />} />
         <Route path="/restaurant/:id" element={<Detail />} />
-        <Route path="/" element={<Home />} />
       </Routes>
-    </Router>
+    </div>
   );
 }
 

@@ -1,13 +1,24 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ref, onValue } from "firebase/database";
 import database from "../service/firebase";
-import { Link } from "react-router-dom";
+import styles from "./Home.module.css";
+import Header from "../components/Header";
+import Restaurants from "../components/Restaurants";
+import Profile from "../components/Profile";
 
-function Home() {
+function Home({ auth }) {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [restaurants, setRestaurants] = useState([]);
   const restaurantsRef = ref(database, "restaurants");
+  const onLogout = useCallback(() => {
+    auth.logout();
+  }, [auth]);
   useEffect(() => {
+    auth.onAuthChange((user) => {
+      !user && navigate({ pathname: "/" });
+    });
     onValue(restaurantsRef, (snapshot) => {
       const datas = snapshot.val();
       setRestaurants(datas);
@@ -15,15 +26,21 @@ function Home() {
     });
   }, []);
   return (
-    <div>
+    <div className={styles.container}>
+      <Header onLogout={onLogout} />
+      <Profile />
       {loading ? (
-        <h1>Loading...</h1>
+        <div className={styles.loader}>
+          <span>Loading...</span>
+        </div>
       ) : (
-        <div>
-          {restaurants.map((data, index) => (
-            <h2 key={index}>
-              <Link to={`/restaurant/${index}`}>{data.name}</Link>
-            </h2>
+        <div className={styles.restaurant}>
+          {restaurants.map((restaurant, index) => (
+            <Restaurants
+              key={restaurant.id}
+              index={index}
+              restaurant={restaurant}
+            />
           ))}
         </div>
       )}
