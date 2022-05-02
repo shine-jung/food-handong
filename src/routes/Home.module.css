@@ -2,6 +2,8 @@
   height: 100%;
   display: flex;
   justify-content: center;
+  padding-top: 80px;
+  background-color: #f2f2f2;
 }
 
 .loader {
@@ -15,8 +17,8 @@
 
 .restaurant {
   display: grid;
-  grid-template-columns: repeat(2, minmax(400px, 1fr));
-  grid-gap: 100px;
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
+  grid-gap: 50px;
   padding: 50px;
   width: 80%;
   padding-top: 70px;
@@ -24,7 +26,7 @@
 
 @media screen and (max-width: 1090px) {
   .restaurant {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
     width: 100%;
   }
 }

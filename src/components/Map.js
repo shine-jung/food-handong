@@ -21,8 +21,8 @@ const Map = ({ lat, lon }) => {
     <div
       id="map"
       style={{
-        width: "500px",
-        height: "500px",
+        width: "700px",
+        height: "400px",
       }}
     ></div>
   );
