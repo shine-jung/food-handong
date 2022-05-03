@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ref, onValue } from "firebase/database";
 import database from "../service/firebase";
-import styles from "./Detail.module.css";
 import Map from "../components/Map";
+import styles from "./Detail.module.css";
 
 function Detail() {
   const { id } = useParams();
