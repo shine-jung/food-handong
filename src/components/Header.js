@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { firebaseAuth } from "../service/firebase";
 import {
   AppBar,
   Box,
@@ -10,10 +11,11 @@ import {
 import GitHubIcon from "@mui/icons-material/GitHub";
 import FeedbackIcon from "@mui/icons-material/Feedback";
 import LoginIcon from "@mui/icons-material/Login";
-import LogoutIcon from "@mui/icons-material/Logout";
+import styles from "./Header.module.css";
 
 function Header({ isLogin, onLogout }) {
   const navigate = useNavigate();
+  const user = firebaseAuth.currentUser;
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -37,9 +39,9 @@ function Header({ isLogin, onLogout }) {
             sx={{ mr: 1.5 }}
           >
             <img
+              className={styles.logo}
               src={process.env.PUBLIC_URL + "/logo.svg"}
               alt="logo"
-              height={36}
             />
           </IconButton>
           <Typography
@@ -67,7 +69,11 @@ function Header({ isLogin, onLogout }) {
           {isLogin ? (
             <Tooltip title="로그아웃" arrow>
               <IconButton onClick={onLogout}>
-                <LogoutIcon />
+                <img
+                  className={styles.profile}
+                  src={user.photoURL}
+                  alt={user.displayName}
+                />
               </IconButton>
             </Tooltip>
           ) : (
