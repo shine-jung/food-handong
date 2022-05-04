@@ -1,0 +1,22 @@
+.container {
+  transition: all 0.1s linear;
+}
+
+.container:hover {
+  transform: scale(1.02);
+}
+
+.menu {
+  width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.img {
+  margin: auto;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
