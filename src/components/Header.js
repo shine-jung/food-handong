@@ -18,17 +18,7 @@ function Header({ isLogin, onLogout }) {
   const user = firebaseAuth.currentUser;
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar
-        position="fixed"
-        color="default"
-        sx={{
-          paddingX: "5%",
-          backgroundColor: "white",
-          ringColor: "rgb(59 130 246/0.5)",
-          boxShadow:
-            "0 1px 3px 0 rgb(0 0 0/0.1),0 1px 2px -1px rgb(0 0 0/0.1);",
-        }}
-      >
+      <AppBar className={styles.header} position="fixed">
         <Toolbar>
           <IconButton
             onClick={() => navigate({ pathname: "/" })}
@@ -45,7 +35,7 @@ function Header({ isLogin, onLogout }) {
             />
           </IconButton>
           <Typography
-            variant="text"
+            variant="h6"
             component="div"
             color="text.title"
             sx={{ flexGrow: 1 }}

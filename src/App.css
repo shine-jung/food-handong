@@ -22,7 +22,19 @@
   src: url("./styles/fonts/NanumBarunGothicBold.ttf");
 }
 
+@font-face {
+  font-family: "EliceDigitalBaeum";
+  font-weight: normal;
+  src: url("./styles/fonts/EliceDigitalBaeum_Regular.ttf");
+}
+
+@font-face {
+  font-family: "EliceDigitalBaeum";
+  font-weight: bold;
+  src: url("./styles/fonts/EliceDigitalBaeum_Bold.ttf");
+}
+
 body {
-  background-color: rgb(249, 246, 246);
-  font-family: "NanumBarunGothic", sans-serif;
+  margin: 0;
+  padding: 0;
 }

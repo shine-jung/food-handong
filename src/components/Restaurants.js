@@ -1,30 +1,18 @@
 import PropTypes from "prop-types";
-import { Box, Grid, Paper, Typography, ButtonBase } from "@mui/material";
+import { Box, Grid, Paper, Typography } from "@mui/material";
 import styles from "./Restaurants.module.css";
 
 function Restaurants({ restaurant }) {
   return (
     <Box className={styles.container}>
-      <Paper
-        sx={{
-          p: 2,
-          margin: "auto",
-          maxWidth: 500,
-          flexGrow: 1,
-          borderRadius: "0.5rem",
-          boxShadow:
-            "0 20px 25px -5px rgb(0 0 0/0.1),0 8px 10px -6px rgb(0 0 0/0.1)",
-        }}
-      >
+      <Paper className={styles.paper}>
         <Grid container spacing={2}>
           <Grid item>
-            <ButtonBase sx={{ width: 150, height: 160 }}>
-              <img
-                className={styles.img}
-                src={restaurant.imgSrc}
-                alt={restaurant.officialName}
-              />
-            </ButtonBase>
+            <img
+              className={styles.img}
+              src={restaurant.imgSrc}
+              alt={restaurant.officialName}
+            />
           </Grid>
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
@@ -49,9 +37,7 @@ function Restaurants({ restaurant }) {
                 </Typography>
               </Grid>
               <Grid item>
-                <Typography sx={{ cursor: "pointer" }} variant="body2">
-                  {restaurant.category}
-                </Typography>
+                <Typography variant="body2">{restaurant.category}</Typography>
               </Grid>
             </Grid>
             <Grid item>

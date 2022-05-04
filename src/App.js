@@ -2,7 +2,11 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./routes/Login";
 import Home from "./routes/Home";
 import Detail from "./routes/Detail";
-import { createTheme, ThemeProvider } from "@mui/material";
+import {
+  createTheme,
+  ThemeProvider,
+  StyledEngineProvider,
+} from "@mui/material";
 import "./App.css";
 
 const theme = createTheme({
@@ -20,19 +24,21 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "'NanumBarunGothic', sans-serif",
+    fontFamily: "'EliceDigitalBaeum', sans-serif",
   },
 });
 
 function App({ auth }) {
   return (
-    <ThemeProvider theme={theme}>
-      <Routes>
-        <Route path="/login" element={<Login auth={auth} />} />
-        <Route path="/" element={<Home auth={auth} />} />
-        <Route path="/restaurant/:id" element={<Detail />} />
-      </Routes>
-    </ThemeProvider>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <Routes>
+          <Route path="/login" element={<Login auth={auth} />} />
+          <Route path="/" element={<Home auth={auth} />} />
+          <Route path="/restaurant/:id" element={<Detail />} />
+        </Routes>
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
 }
 

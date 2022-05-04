@@ -4,7 +4,6 @@ import { ref, onValue } from "firebase/database";
 import database from "../service/firebase";
 import Header from "../components/Header";
 import Restaurants from "../components/Restaurants";
-import Profile from "../components/Profile";
 import { Box, Grid } from "@mui/material";
 import styles from "./Home.module.css";
 
@@ -33,10 +32,7 @@ function Home({ auth }) {
         <Box className={styles.loader}>Loading...</Box>
       ) : (
         <Box className={styles.container}>
-          {/* <Box sx={{ width: 300 }}>
-            <Profile />
-          </Box> */}
-          <Box sx={{ flexGrow: 1, paddingX: "5%" }}>
+          <Box className={styles.restaurants}>
             <Grid
               container
               spacing={{ xs: 2, md: 4 }}
