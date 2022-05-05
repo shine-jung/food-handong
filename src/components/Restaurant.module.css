@@ -1,0 +1,29 @@
+.container {
+  transition: all 0.1s linear;
+}
+
+.container:hover {
+  transform: scale(1.02);
+}
+
+.paper {
+  max-width: 500px;
+  flex-grow: 1;
+  padding: 16px;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0/0.1), 0 2px 4px -2px rgb(0 0 0/0.1);
+  cursor: pointer;
+}
+
+.menu {
+  width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.img {
+  width: 150px;
+  height: 160px;
+  object-fit: cover;
+}

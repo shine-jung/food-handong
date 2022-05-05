@@ -1,0 +1,40 @@
+@font-face {
+  font-family: "NanumBarunGothic";
+  font-weight: 300;
+  src: url("./styles/fonts/NanumBarunGothicUltraLight.ttf");
+}
+
+@font-face {
+  font-family: "NanumBarunGothic";
+  font-weight: 400;
+  src: url("./styles/fonts/NanumBarunGothicLight.ttf");
+}
+
+@font-face {
+  font-family: "NanumBarunGothic";
+  font-weight: normal;
+  src: url("./styles/fonts/NanumBarunGothic.ttf");
+}
+
+@font-face {
+  font-family: "NanumBarunGothic";
+  font-weight: bold;
+  src: url("./styles/fonts/NanumBarunGothicBold.ttf");
+}
+
+@font-face {
+  font-family: "EliceDigitalBaeum";
+  font-weight: normal;
+  src: url("./styles/fonts/EliceDigitalBaeum_Regular.ttf");
+}
+
+@font-face {
+  font-family: "EliceDigitalBaeum";
+  font-weight: bold;
+  src: url("./styles/fonts/EliceDigitalBaeum_Bold.ttf");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}

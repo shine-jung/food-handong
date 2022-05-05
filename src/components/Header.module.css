@@ -1,0 +1,14 @@
+.header {
+  padding: 0 5%;
+  background-color: white;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0/0.1), 0 1px 2px -1px rgb(0 0 0/0.1);
+}
+
+.logo {
+  width: 36px;
+}
+
+.profile {
+  width: 28px;
+  border-radius: 50%;
+}
