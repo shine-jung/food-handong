@@ -16,12 +16,12 @@ const Map = ({ lat, lon }) => {
       position: markerPosition,
     });
     marker.setMap(map);
-  }, []);
+  }, [lat, lon]);
   return (
     <div
       id="map"
       style={{
-        width: "700px",
+        width: "100%",
         height: "400px",
       }}
     ></div>

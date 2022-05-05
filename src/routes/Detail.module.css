@@ -13,13 +13,62 @@
   font-weight: 300;
 }
 
-.infos {
-  padding: 5rem 5%;
+.detail {
+  padding: 5rem 2%;
   flex-grow: 1;
 }
 
 .img {
-  width: 30%;
-  height: 45vh;
+  width: 40%;
+  height: 40%;
   object-fit: cover;
+}
+
+.section {
+  padding: 16px;
+  margin-bottom: 24px;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0/0.1), 0 2px 4px -2px rgb(0 0 0/0.1);
+}
+
+.title {
+  padding: 10px 15px 15px 15px;
+}
+
+.menus {
+  height: 450px;
+  display: flex;
+}
+
+.menu {
+  padding: 10px;
+  display: flex;
+  align-items: flex-end;
+  border-bottom: solid;
+  border-width: 1px;
+  border-color: rgb(229 231 235);
+}
+
+.menu:first-child {
+  border-top: solid;
+  border-width: 1px;
+  border-color: rgb(229 231 235);
+}
+
+.menu .img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  margin-right: 10px;
+}
+
+.menuText {
+  white-space: pre-line;
+  padding-left: 5px;
+  padding-bottom: 1px;
+}
+
+.map {
+  border-radius: 0.5rem;
 }
