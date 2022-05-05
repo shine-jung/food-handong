@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ref, onValue } from "firebase/database";
 import database from "../service/firebase";
 import Header from "../components/Header";
-import Restaurants from "../components/Restaurants";
+import Restaurant from "../components/Restaurant";
 import { Box, Grid } from "@mui/material";
 import styles from "./Home.module.css";
 
@@ -39,12 +39,12 @@ function Home({ auth }) {
               columns={{ xs: 4, sm: 8, md: 12 }}
             >
               {restaurants.map((restaurant, index) => (
-                <Grid key={index} item xs={2} sm={4} md={4}>
+                <Grid key={index} item xs={4} sm={4} md={4}>
                   <Link
                     className={styles.restaurant}
                     to={`/restaurant/${index}`}
                   >
-                    <Restaurants key={restaurant.id} restaurant={restaurant} />
+                    <Restaurant key={restaurant.id} restaurant={restaurant} />
                   </Link>
                 </Grid>
               ))}

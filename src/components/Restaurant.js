@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import { Box, Grid, Paper, Typography } from "@mui/material";
-import styles from "./Restaurants.module.css";
+import styles from "./Restaurant.module.css";
 
-function Restaurants({ restaurant }) {
+function Restaurant({ restaurant }) {
   return (
     <Box className={styles.container}>
       <Paper className={styles.paper}>
@@ -14,7 +14,7 @@ function Restaurants({ restaurant }) {
               alt={restaurant.officialName}
             />
           </Grid>
-          <Grid item xs={12} sm container>
+          <Grid item xs={4} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
                 <Typography gutterBottom variant="subtitle1" component="div">
@@ -29,10 +29,10 @@ function Restaurants({ restaurant }) {
                   color="text.secondary"
                 >
                   {restaurant.menus[0] && (
-                    <div>{restaurant.menus[0].title}</div>
+                    <Box>{restaurant.menus[0].title}</Box>
                   )}
                   {restaurant.menus[1] && (
-                    <div>{restaurant.menus[1].title}</div>
+                    <Box>{restaurant.menus[1].title}</Box>
                   )}
                 </Typography>
               </Grid>
@@ -52,8 +52,8 @@ function Restaurants({ restaurant }) {
   );
 }
 
-Restaurants.propTypes = {
+Restaurant.propTypes = {
   restaurant: PropTypes.object.isRequired,
 };
 
-export default Restaurants;
+export default Restaurant;

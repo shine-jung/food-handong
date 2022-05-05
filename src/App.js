@@ -35,7 +35,7 @@ function App({ auth }) {
         <Routes>
           <Route path="/login" element={<Login auth={auth} />} />
           <Route path="/" element={<Home auth={auth} />} />
-          <Route path="/restaurant/:id" element={<Detail />} />
+          <Route path="/restaurant/:id" element={<Detail auth={auth} />} />
         </Routes>
       </ThemeProvider>
     </StyledEngineProvider>
