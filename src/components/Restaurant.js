@@ -29,10 +29,10 @@ function Restaurant({ restaurant }) {
                   color="text.secondary"
                 >
                   {restaurant.menus[0] && (
-                    <div>{restaurant.menus[0].title}</div>
+                    <Box>{restaurant.menus[0].title}</Box>
                   )}
                   {restaurant.menus[1] && (
-                    <div>{restaurant.menus[1].title}</div>
+                    <Box>{restaurant.menus[1].title}</Box>
                   )}
                 </Typography>
               </Grid>

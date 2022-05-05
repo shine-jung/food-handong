@@ -18,12 +18,6 @@
   flex-grow: 1;
 }
 
-.img {
-  width: 40%;
-  height: 40%;
-  object-fit: cover;
-}
-
 .section {
   padding: 16px;
   margin-bottom: 24px;
@@ -35,7 +29,42 @@
   padding: 10px 15px 15px 15px;
 }
 
+.info {
+  display: block;
+}
+
+@media screen and (min-width: 600px) {
+  .info {
+    display: flex;
+  }
+}
+
+.infoImg {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  margin: 0 16px 4px 4px;
+}
+
+.infoText {
+  margin-left: 4px;
+  margin-bottom: 2px;
+}
+
+.hours {
+  display: flex;
+  align-items: flex-start;
+  text-align: left;
+  margin-left: 4px;
+}
+
+.day {
+  margin-right: 8px;
+}
+
 .menus {
+  width: 100%;
   height: 450px;
   display: flex;
 }
@@ -55,7 +84,7 @@
   border-color: rgb(229 231 235);
 }
 
-.menu .img {
+.menuImg {
   width: 100px;
   height: 100px;
   object-fit: cover;

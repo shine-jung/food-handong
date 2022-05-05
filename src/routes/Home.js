@@ -24,7 +24,7 @@ function Home({ auth }) {
       setRestaurants(datas);
       setLoading(false);
     });
-  }, [auth, restaurantsRef]);
+  }, []);
   return (
     <>
       <Header isLogin={isLogin} onLogout={onLogout} />
