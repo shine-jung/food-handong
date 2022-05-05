@@ -111,7 +111,10 @@ function Detail({ auth }) {
                                   {restaurant.openingHours[days[today]]
                                     .split("\n")
                                     .map((line, index) => (
-                                      <Typography key={index}>
+                                      <Typography
+                                        key={index}
+                                        sx={{ textAlign: "left" }}
+                                      >
                                         {line}
                                         <br />
                                       </Typography>
