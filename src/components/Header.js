@@ -20,20 +20,22 @@ function Header({ isLogin, onLogout }) {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar className={styles.header} position="fixed">
         <Toolbar>
-          <IconButton
-            onClick={() => navigate({ pathname: "/" })}
-            size="medium"
-            edge="start"
-            color="primary"
-            aria-label="logo"
-            sx={{ mr: 1.5 }}
-          >
-            <img
-              className={styles.logo}
-              src={process.env.PUBLIC_URL + "/logo.svg"}
-              alt="logo"
-            />
-          </IconButton>
+          <Tooltip title="홈 화면" arrow>
+            <IconButton
+              onClick={() => navigate({ pathname: "/" })}
+              size="medium"
+              edge="start"
+              color="primary"
+              aria-label="logo"
+              sx={{ mr: 1.5 }}
+            >
+              <img
+                className={styles.logo}
+                src={process.env.PUBLIC_URL + "/logo.svg"}
+                alt="logo"
+              />
+            </IconButton>
+          </Tooltip>
           <Typography
             variant="h6"
             component="div"
