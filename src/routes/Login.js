@@ -16,7 +16,7 @@ function Login({ auth }) {
     auth.onAuthChange((user) => {
       user && goToHome(user.uid);
     });
-  });
+  }, []);
   return (
     <>
       <Header isLogin={false} onLogout={false} />

@@ -35,7 +35,7 @@ function Home({ auth }) {
           <Box className={styles.restaurants}>
             <Grid
               container
-              spacing={{ xs: 2, md: 4 }}
+              spacing={{ xs: 2, md: 3.5 }}
               columns={{ xs: 4, sm: 8, md: 12 }}
             >
               {restaurants.map((restaurant, index) => (
