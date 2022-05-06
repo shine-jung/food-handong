@@ -18,7 +18,7 @@ const theme = createTheme({
       main: "#CC3333",
     },
     text: {
-      title: "hsl(210,8%,15%)",
+      title: "#333333",
       primary: "hsl(210,8%,15%)",
       secondary: "hsl(210,8%,45%)",
     },

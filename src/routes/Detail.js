@@ -11,6 +11,7 @@ import {
   Typography,
   Tabs,
   tabsClasses,
+  Button,
   ButtonBase,
   Tooltip,
 } from "@mui/material";
@@ -24,10 +25,14 @@ function Detail({ auth }) {
   const [isLogin, setIsLogin] = useState(false);
   const [restaurant, setRestaurant] = useState({});
   const restaurantRef = ref(database, `restaurants/${id}`);
+  const [draggable, setDraggable] = useState(false);
 
   const onLogout = useCallback(() => {
     auth.logout();
   }, [auth]);
+  const dragBtnClick = () => {
+    setDraggable((prev) => !prev);
+  };
   useEffect(() => {
     auth.onAuthChange((user) => {
       user ? setIsLogin(true) : setIsLogin(false);
@@ -181,10 +186,18 @@ function Detail({ auth }) {
                     </Tabs>
                   </Paper>
                   <Paper className={styles.section}>
-                    <Typography className={styles.title} variant="h6">
-                      지도
-                    </Typography>
-                    <Map lat={restaurant.lat} lon={restaurant.lon} />
+                    <Box className={styles.mapHeader}>
+                      <Typography variant="h6">지도</Typography>
+                      <Button onClick={dragBtnClick} variant="outlined">
+                        {draggable ? "지도 이동 끄기" : "지도 이동 켜기"}
+                      </Button>
+                    </Box>
+                    <Map
+                      name={restaurant.name}
+                      lat={restaurant.lat}
+                      lon={restaurant.lon}
+                      draggable={draggable}
+                    />
                   </Paper>
                 </Box>
               </Grid>

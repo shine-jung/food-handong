@@ -95,6 +95,12 @@
   padding-left: 5px;
 }
 
+.mapHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0 15px 15px;
+}
+
 .map {
   border-radius: 0.5rem;
 }
