@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const { kakao } = window;
 
-const Map = ({ name, lat, lon, draggable }) => {
+const Map = ({ name, lat, lon, centerLocation }) => {
   const [userPosition, setUserPosition] = useState({
     latitude: 36.103116,
     longitude: 129.388368,
@@ -54,16 +54,15 @@ const Map = ({ name, lat, lon, draggable }) => {
       title: positions[1].title,
     });
     geolocation.getCurrentPosition(handleSuccess, handleError);
-    map.setBounds(bounds);
+    centerLocation && map.setBounds(bounds);
     map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-    map.setDraggable(draggable);
     userMarker.setMap(map);
     restaurantMarker.setMap(map);
   }, [
     name,
     lat,
     lon,
-    draggable,
+    centerLocation,
     userPosition.latitude,
     userPosition.longitude,
   ]);
@@ -82,7 +81,7 @@ Map.propTypes = {
   name: PropTypes.string.isRequired,
   lat: PropTypes.number.isRequired,
   lon: PropTypes.number.isRequired,
-  draggable: PropTypes.bool.isRequired,
+  centerLocation: PropTypes.bool.isRequired,
 };
 
 export default Map;
