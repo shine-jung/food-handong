@@ -25,13 +25,13 @@ function Detail({ auth }) {
   const [isLogin, setIsLogin] = useState(false);
   const [restaurant, setRestaurant] = useState({});
   const restaurantRef = ref(database, `restaurants/${id}`);
-  const [draggable, setDraggable] = useState(false);
+  const [centerLocation, setCenterLocation] = useState(false); // 0: 식당 위치, 1: 식당 & 내 위치
 
   const onLogout = useCallback(() => {
     auth.logout();
   }, [auth]);
-  const dragBtnClick = () => {
-    setDraggable((prev) => !prev);
+  const centerBtnClick = () => {
+    setCenterLocation((prev) => !prev);
   };
   useEffect(() => {
     auth.onAuthChange((user) => {
@@ -188,15 +188,19 @@ function Detail({ auth }) {
                   <Paper className={styles.section}>
                     <Box className={styles.mapHeader}>
                       <Typography variant="h6">지도</Typography>
-                      <Button onClick={dragBtnClick} variant="outlined">
-                        {draggable ? "지도 이동 끄기" : "지도 이동 켜기"}
+                      <Button
+                        onClick={centerBtnClick}
+                        className={styles.centerBtn}
+                        variant="outlined"
+                      >
+                        {centerLocation ? "식당 & 내 위치" : "식당 위치"}
                       </Button>
                     </Box>
                     <Map
                       name={restaurant.name}
                       lat={restaurant.lat}
                       lon={restaurant.lon}
-                      draggable={draggable}
+                      centerLocation={centerLocation}
                     />
                   </Paper>
                 </Box>
