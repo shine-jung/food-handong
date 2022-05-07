@@ -37,10 +37,10 @@ function Header({ isLogin, onLogout }) {
             </IconButton>
           </Tooltip>
           <Typography
+            className={styles.title}
             variant="h6"
             component="div"
             color="text.title"
-            sx={{ flexGrow: 1 }}
           >
             한슐랭 가이드
           </Typography>

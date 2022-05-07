@@ -10,7 +10,6 @@ import {
   Paper,
   Typography,
   Tabs,
-  tabsClasses,
   Button,
   ButtonBase,
   Tooltip,
@@ -160,13 +159,8 @@ function Detail({ auth }) {
                       value={false}
                       orientation="vertical"
                       variant="scrollable"
-                      scrollButtons
+                      scrollButtons="auto"
                       aria-label="menus"
-                      sx={{
-                        [`& .${tabsClasses.scrollButtons}`]: {
-                          "&.Mui-disabled": { opacity: 0.3 },
-                        },
-                      }}
                     >
                       {restaurant.menus.map((menu, index) => (
                         <Box key={index} className={styles.menu}>

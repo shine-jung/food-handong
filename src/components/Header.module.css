@@ -8,6 +8,11 @@
   width: 36px;
 }
 
+.title {
+  flex-grow: 1;
+  user-select: none;
+}
+
 .profile {
   width: 28px;
   border-radius: 50%;
