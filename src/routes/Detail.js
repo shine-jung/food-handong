@@ -48,8 +48,8 @@ function Detail({ auth }) {
       {loading ? (
         <Box className={styles.loader}>Loading...</Box>
       ) : (
-        <Box className={styles.container}>
-          <Box className={styles.detail}>
+        <Box className={styles.root}>
+          <Box className={styles.container}>
             <Grid
               container
               spacing={{ xs: 0, md: "2%" }}

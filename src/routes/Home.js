@@ -1,15 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { ref, onValue } from "firebase/database";
 import database from "../service/firebase";
 import Header from "../components/Header";
-import Restaurant from "../components/Restaurant";
-import { Box, Grid } from "@mui/material";
+import List from "../components/List";
+import { Box, InputBase } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 import styles from "./Home.module.css";
 
 function Home({ auth }) {
   const [loading, setLoading] = useState(true);
   const [isLogin, setIsLogin] = useState(false);
+  const [searchText, setSearchText] = useState("");
   const [restaurants, setRestaurants] = useState([]);
   const restaurantsRef = ref(database, "restaurants");
   const onLogout = useCallback(() => {
@@ -31,24 +32,20 @@ function Home({ auth }) {
       {loading ? (
         <Box className={styles.loader}>Loading...</Box>
       ) : (
-        <Box className={styles.container}>
-          <Box className={styles.restaurants}>
-            <Grid
-              container
-              spacing={{ xs: 2, md: 3.5 }}
-              columns={{ xs: 4, sm: 8, md: 12 }}
-            >
-              {restaurants.map((restaurant, index) => (
-                <Grid key={index} item xs={4} sm={4} md={4}>
-                  <Link
-                    className={styles.restaurant}
-                    to={`/restaurant/${index}`}
-                  >
-                    <Restaurant key={restaurant.id} restaurant={restaurant} />
-                  </Link>
-                </Grid>
-              ))}
-            </Grid>
+        <Box className={styles.root}>
+          <Box className={styles.container}>
+            <Box className={styles.searchBar}>
+              <SearchIcon className={styles.searchIcon} />
+              <InputBase
+                className={styles.searchInput}
+                onChange={(e) => setSearchText(e.target.value)}
+                value={searchText}
+                autoComplete="off"
+                name="search"
+                placeholder="식당을 검색하세요"
+              />
+            </Box>
+            <List searchText={searchText} restaurants={restaurants} />
           </Box>
         </Box>
       )}

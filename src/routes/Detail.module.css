@@ -1,5 +1,6 @@
-.container {
+.root {
   width: 100%;
+  min-height: 100vh;
   margin-top: 56px;
   background-color: rgb(249 250 251);
 }
@@ -13,7 +14,7 @@
   font-weight: 300;
 }
 
-.detail {
+.container {
   padding: 5rem 2%;
   flex-grow: 1;
 }

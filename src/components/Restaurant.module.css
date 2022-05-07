@@ -7,7 +7,6 @@
 }
 
 .paper {
-  max-width: 500px;
   flex-grow: 1;
   padding: 16px;
   border-radius: 0.5rem;
