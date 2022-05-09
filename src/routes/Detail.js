@@ -23,7 +23,7 @@ function Detail({ auth }) {
   const [loading, setLoading] = useState(true);
   const [isLogin, setIsLogin] = useState(false);
   const [restaurant, setRestaurant] = useState({});
-  const restaurantsRef = ref(database, "restaurants");
+  const restaurantRef = ref(database, `restaurants/${id}`);
   const [centerLocation, setCenterLocation] = useState(false); // 0: 식당 위치, 1: 식당 & 내 위치
 
   const onLogout = useCallback(() => {
@@ -36,11 +36,9 @@ function Detail({ auth }) {
     auth.onAuthChange((user) => {
       user ? setIsLogin(true) : setIsLogin(false);
     });
-    onValue(restaurantsRef, (snapshot) => {
-      const datas = snapshot.val();
-      for (let i = 0; i < datas.length; i++) {
-        if (datas[i].id === parseInt(id)) setRestaurant(datas[i]);
-      }
+    onValue(restaurantRef, (snapshot) => {
+      const data = snapshot.val();
+      setRestaurant(data);
       setLoading(false);
     });
   }, []);
