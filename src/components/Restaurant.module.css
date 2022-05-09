@@ -16,6 +16,9 @@
 
 .menu {
   width: 120px;
+}
+
+.menuText {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

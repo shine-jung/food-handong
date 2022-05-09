@@ -88,7 +88,7 @@ function Detail({ auth }) {
                         </Typography>
                         <Box className={styles.hours}>
                           {restaurant.openingHours === "정보가 없어요" ? (
-                            <Typography>정보가 없어요 😭</Typography>
+                            <Typography>영업시간 정보가 없어요 😭</Typography>
                           ) : restaurant.openingHours["매일"] ? (
                             <>
                               <Typography className={styles.day}>
