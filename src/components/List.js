@@ -27,10 +27,13 @@ function List({ searchText, restaurants }) {
         spacing={{ xs: 2, md: 3.5 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
-        {filteredList.map((restaurant, index) => (
-          <Grid key={index} item xs={4} sm={4} md={4}>
-            <Link className={styles.restaurant} to={`/restaurant/${index}`}>
-              <Restaurant key={restaurant.id} restaurant={restaurant} />
+        {filteredList.map((restaurant) => (
+          <Grid key={restaurant.id} item xs={4} sm={4} md={4}>
+            <Link
+              className={styles.restaurant}
+              to={`/restaurant/${restaurant.id}`}
+            >
+              <Restaurant restaurant={restaurant} />
             </Link>
           </Grid>
         ))}

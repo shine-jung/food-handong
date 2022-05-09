@@ -21,7 +21,7 @@ function Home({ auth }) {
       user ? setIsLogin(true) : setIsLogin(false);
     });
     onValue(restaurantsRef, (snapshot) => {
-      const datas = snapshot.val();
+      const datas = Object.values(snapshot.val());
       setRestaurants(datas);
       setLoading(false);
     });
