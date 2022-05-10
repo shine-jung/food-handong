@@ -10,6 +10,15 @@ import {
 import "./App.css";
 
 const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 800,
+      lg: 1250,
+      xl: 1536,
+    },
+  },
   palette: {
     primary: {
       main: "#B92146",
@@ -18,7 +27,7 @@ const theme = createTheme({
       main: "#CC3333",
     },
     text: {
-      title: "#333333",
+      logo: "#333333",
       primary: "hsl(210,8%,15%)",
       secondary: "hsl(210,8%,45%)",
     },

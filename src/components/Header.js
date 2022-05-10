@@ -40,7 +40,7 @@ function Header({ isLogin, onLogout }) {
             className={styles.title}
             variant="h6"
             component="div"
-            color="text.title"
+            color="text.logo"
           >
             한슐랭 가이드
           </Typography>
