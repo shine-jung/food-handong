@@ -1,10 +1,6 @@
 import PropTypes from "prop-types";
 import { Box, Paper, Typography } from "@mui/material";
-import {
-  faStar,
-  faHeart,
-  faMessage,
-} from "@fortawesome/free-regular-svg-icons";
+import { faStar, faHeart, faComment } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./Restaurant.module.css";
 
@@ -48,13 +44,23 @@ function Restaurant({ restaurant }) {
             {restaurant.category}
           </Typography>
         </Box>
-        <Typography className={styles.statusContainer} variant="body2">
-          <FontAwesomeIcon className={styles.barIcon} icon={faStar} />
-          {starAvg.toFixed(1)}
-          <FontAwesomeIcon className={styles.barIcon} icon={faHeart} />
-          {restaurant.likes}
-          <FontAwesomeIcon className={styles.barIcon} icon={faMessage} />
-          {restaurant.reviewCount}
+        <Typography
+          className={styles.statusContainer}
+          variant="body2"
+          color="text.secondary"
+        >
+          <Box className={styles.status}>
+            <FontAwesomeIcon className={styles.statusIcon} icon={faStar} />
+            {starAvg.toFixed(1)}
+          </Box>
+          <Box className={styles.status}>
+            <FontAwesomeIcon className={styles.statusIcon} icon={faHeart} />
+            {restaurant.likes}
+          </Box>
+          <Box>
+            <FontAwesomeIcon className={styles.statusIcon} icon={faComment} />
+            {restaurant.reviewCount}
+          </Box>
         </Typography>
       </Box>
     </Paper>
