@@ -44,21 +44,17 @@ function Restaurant({ restaurant }) {
             {restaurant.category}
           </Typography>
         </Box>
-        <Typography
-          className={styles.statusContainer}
-          variant="body2"
-          color="text.secondary"
-        >
+        <Typography className={styles.statusContainer} color="text.secondary">
           <Box className={styles.status}>
-            <FontAwesomeIcon className={styles.statusIcon} icon={faStar} />
+            <FontAwesomeIcon className={styles.starIcon} icon={faStar} />
             {starAvg.toFixed(1)}
           </Box>
           <Box className={styles.status}>
-            <FontAwesomeIcon className={styles.statusIcon} icon={faHeart} />
+            <FontAwesomeIcon className={styles.heartIcon} icon={faHeart} />
             {restaurant.likes}
           </Box>
           <Box>
-            <FontAwesomeIcon className={styles.statusIcon} icon={faComment} />
+            <FontAwesomeIcon className={styles.commentIcon} icon={faComment} />
             {restaurant.reviewCount}
           </Box>
         </Typography>

@@ -52,16 +52,26 @@
 }
 
 .statusContainer {
-  align-self: flex-end;
   display: flex;
   justify-content: flex-end;
-  text-align: end;
+  font-size: 0.8rem;
 }
 
 .status {
   margin-right: 10px;
 }
 
-.statusIcon {
+.starIcon {
+  color: #ffcc33;
+  margin-right: 5px;
+}
+
+.heartIcon {
+  color: #ff6666;
+  margin-right: 5px;
+}
+
+.commentIcon {
+  color: #33cccc;
   margin-right: 5px;
 }

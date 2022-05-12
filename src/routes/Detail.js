@@ -14,6 +14,8 @@ import {
   ButtonBase,
   Tooltip,
 } from "@mui/material";
+import { faStar, faHeart, faComment } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./Detail.module.css";
 
 function Detail({ auth }) {
@@ -25,6 +27,7 @@ function Detail({ auth }) {
   const [restaurant, setRestaurant] = useState({});
   const restaurantRef = ref(database, `restaurants/${id}`);
   const [centerLocation, setCenterLocation] = useState(false); // 0: 식당 위치, 1: 식당 & 내 위치
+  const [starAvg, setStarAvg] = useState(0);
 
   const onLogout = useCallback(() => {
     auth.logout();
@@ -39,6 +42,9 @@ function Detail({ auth }) {
     onValue(restaurantRef, (snapshot) => {
       const data = snapshot.val();
       setRestaurant(data);
+      setStarAvg(
+        restaurant.starCount ? restaurant.starSum / restaurant.starCount : 0
+      );
       setLoading(false);
     });
   }, []);
@@ -68,14 +74,28 @@ function Detail({ auth }) {
                         alt={restaurant.officialName}
                       />
                       <Box>
-                        <Typography className={styles.infoText}>
-                          평점: 0
-                        </Typography>
-                        <Typography className={styles.infoText}>
-                          좋아요: 0
-                        </Typography>
-                        <Typography className={styles.infoText}>
-                          리뷰 수: 0
+                        <Typography className={styles.statusContainer}>
+                          <Box className={styles.status}>
+                            <FontAwesomeIcon
+                              className={styles.starIcon}
+                              icon={faStar}
+                            />
+                            {starAvg.toFixed(1)}
+                          </Box>
+                          <Box className={styles.status}>
+                            <FontAwesomeIcon
+                              className={styles.heartIcon}
+                              icon={faHeart}
+                            />
+                            {restaurant.likes}
+                          </Box>
+                          <Box>
+                            <FontAwesomeIcon
+                              className={styles.commentIcon}
+                              icon={faComment}
+                            />
+                            {restaurant.reviewCount}
+                          </Box>
                         </Typography>
                         <Typography className={styles.infoText}>
                           {restaurant.category}
@@ -182,13 +202,23 @@ function Detail({ auth }) {
                   <Paper className={styles.section}>
                     <Box className={styles.mapHeader}>
                       <Typography variant="h6">지도</Typography>
-                      <Button
-                        onClick={centerBtnClick}
-                        className={styles.centerBtn}
-                        variant="outlined"
+                      <Tooltip
+                        title={
+                          centerLocation
+                            ? "식당 위치 보기"
+                            : "식당 & 내 위치 보기"
+                        }
+                        placement="top"
+                        arrow
                       >
-                        {centerLocation ? "식당 & 내 위치" : "식당 위치"}
-                      </Button>
+                        <Button
+                          onClick={centerBtnClick}
+                          className={styles.centerBtn}
+                          variant="outlined"
+                        >
+                          {centerLocation ? "식당 & 내 위치" : "식당 위치"}
+                        </Button>
+                      </Tooltip>
                     </Box>
                     <Map
                       name={restaurant.name}
