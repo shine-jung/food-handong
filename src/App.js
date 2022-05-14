@@ -21,10 +21,10 @@ const theme = createTheme({
   },
   palette: {
     primary: {
-      main: "#B92146",
+      main: "hsl(210,8%,15%)",
     },
     secondary: {
-      main: "#CC3333",
+      main: "hsl(210,8%,45%)",
     },
     text: {
       logo: "#333333",

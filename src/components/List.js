@@ -4,7 +4,7 @@ import { Grid } from "@mui/material";
 import Restaurant from "./Restaurant";
 import styles from "./List.module.css";
 
-function List({ searchText, restaurants }) {
+function List({ searchText, sortBy, restaurants }) {
   const filteredList = restaurants.filter((restaurant) => {
     if (searchText === "") {
       return restaurant;
@@ -20,6 +20,14 @@ function List({ searchText, restaurants }) {
       );
     }
   });
+  const getStarAvg = (obj) => (obj.starCount ? obj.starSum / obj.starCount : 0);
+  const sortedList = filteredList.sort((a, b) => {
+    if (sortBy === "likes") return b.likes - a.likes;
+    else if (sortBy === "reviewCount") return b.reviewCount - a.reviewCount;
+    else if (sortBy === "name")
+      return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+    else return getStarAvg(b) - getStarAvg(a);
+  });
   return (
     <>
       <Grid
@@ -27,7 +35,7 @@ function List({ searchText, restaurants }) {
         spacing={{ xs: 2, md: 3, lg: 3.5 }}
         columns={{ xs: 1, md: 2, lg: 3, xl: 4 }}
       >
-        {filteredList.map((restaurant) => (
+        {sortedList.map((restaurant) => (
           <Grid key={restaurant.id} item xs={1} md={1} lg={1} xl={1}>
             <Link
               className={styles.restaurant}
@@ -44,6 +52,7 @@ function List({ searchText, restaurants }) {
 
 List.propTypes = {
   searchText: PropTypes.string.isRequired,
+  sortBy: PropTypes.string.isRequired,
   restaurants: PropTypes.array.isRequired,
 };
 

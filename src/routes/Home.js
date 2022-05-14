@@ -3,14 +3,39 @@ import { ref, onValue } from "firebase/database";
 import database from "../service/firebase";
 import Header from "../components/Header";
 import List from "../components/List";
-import { Box, InputBase } from "@mui/material";
+import { Box, InputBase, Select, MenuItem, styled } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import styles from "./Home.module.css";
+
+const BootstrapInput = styled(InputBase)(({ theme }) => ({
+  "& .MuiInputBase-input": {
+    borderRadius: 10,
+    backgroundColor: "white",
+    border: "1px solid #dfe1e5",
+    fontSize: 16,
+    color: "text.primary",
+    padding: "4px 26px 5px 17px",
+    fontFamily: ["EliceDigitalBaeum", "sans-serif"].join(","),
+    transition: theme.transitions.create([
+      "border-radius",
+      "border-color",
+      "box-shadow",
+    ]),
+    "&:focus": {
+      borderRadius: 10,
+    },
+    "&:hover": {
+      borderColor: "rgba(223, 225, 229, 0)",
+      boxShadow: "0 1px 6px rgba(32, 33, 36, 0.28)",
+    },
+  },
+}));
 
 function Home({ auth }) {
   const [loading, setLoading] = useState(true);
   const [isLogin, setIsLogin] = useState(false);
   const [searchText, setSearchText] = useState("");
+  const [sortBy, setSortBy] = useState("starAvg");
   const [restaurants, setRestaurants] = useState([]);
   const restaurantsRef = ref(database, "restaurants");
   const onLogout = useCallback(() => {
@@ -34,18 +59,36 @@ function Home({ auth }) {
       ) : (
         <Box className={styles.root}>
           <Box className={styles.container}>
-            <Box className={styles.searchBar}>
-              <SearchIcon className={styles.searchIcon} />
-              <InputBase
-                className={styles.searchInput}
-                onChange={(e) => setSearchText(e.target.value)}
-                value={searchText}
-                autoComplete="off"
-                name="search"
-                placeholder="식당을 검색하세요"
-              />
+            <Box className={styles.header}>
+              <Box className={styles.searchBar}>
+                <SearchIcon className={styles.searchIcon} />
+                <InputBase
+                  className={styles.searchInput}
+                  onChange={(e) => setSearchText(e.target.value)}
+                  value={searchText}
+                  autoComplete="off"
+                  name="search"
+                  placeholder="식당을 검색하세요"
+                />
+              </Box>
+              <Select
+                className={styles.select}
+                value={sortBy}
+                label="정렬"
+                onChange={(e) => setSortBy(e.target.value)}
+                input={<BootstrapInput />}
+              >
+                <MenuItem value={"starAvg"}>별점순</MenuItem>
+                <MenuItem value={"likes"}>좋아요순</MenuItem>
+                <MenuItem value={"reviewCount"}>리뷰순</MenuItem>
+                <MenuItem value={"name"}>식당이름순</MenuItem>
+              </Select>
             </Box>
-            <List searchText={searchText} restaurants={restaurants} />
+            <List
+              searchText={searchText}
+              sortBy={sortBy}
+              restaurants={restaurants}
+            />
           </Box>
         </Box>
       )}

@@ -42,7 +42,7 @@ function Header({ isLogin, onLogout }) {
             component="div"
             color="text.logo"
           >
-            한슐랭 가이드
+            한동맛나
           </Typography>
           <Tooltip title="GitHub 링크" arrow sx={{ mr: 0.5 }}>
             <IconButton
