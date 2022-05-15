@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { ref, onValue } from "firebase/database";
 import database from "../service/firebase";
 import Header from "../components/Header";
+import AddReview from "../components/AddReview";
+import ReviewList from "../components/ReviewList";
 import Map from "../components/Map";
 import {
   Box,
@@ -27,7 +29,6 @@ function Detail({ auth }) {
   const [restaurant, setRestaurant] = useState({});
   const restaurantRef = ref(database, `restaurants/${id}`);
   const [centerLocation, setCenterLocation] = useState(false); // 0: 식당 위치, 1: 식당 & 내 위치
-  const [starAvg, setStarAvg] = useState(0);
 
   const onLogout = useCallback(() => {
     auth.logout();
@@ -42,9 +43,6 @@ function Detail({ auth }) {
     onValue(restaurantRef, (snapshot) => {
       const data = snapshot.val();
       setRestaurant(data);
-      setStarAvg(
-        restaurant.starCount ? restaurant.starSum / restaurant.starCount : 0
-      );
       setLoading(false);
     });
   }, []);
@@ -80,7 +78,10 @@ function Detail({ auth }) {
                               className={styles.starIcon}
                               icon={faStar}
                             />
-                            {starAvg.toFixed(1)}
+                            {(restaurant.starCount
+                              ? restaurant.starSum / restaurant.starCount
+                              : 0
+                            ).toFixed(1)}
                           </Box>
                           <Box className={styles.status}>
                             <FontAwesomeIcon
@@ -214,7 +215,8 @@ function Detail({ auth }) {
                         <Button
                           onClick={centerBtnClick}
                           className={styles.centerBtn}
-                          variant="outlined"
+                          variant="contained"
+                          color="secondary"
                         >
                           {centerLocation ? "식당 & 내 위치" : "식당 위치"}
                         </Button>
@@ -230,10 +232,15 @@ function Detail({ auth }) {
                 </Box>
               </Grid>
               <Grid item xs={6}>
-                <Paper className={styles.section}>Review</Paper>
+                <Paper className={styles.section}>
+                  <AddReview restaurant={restaurant} />
+                </Paper>
+                <ReviewList restaurant={restaurant} />
               </Grid>
             </Grid>
-            <Typography>정보 업데이트 날짜: {restaurant.updateDate}</Typography>
+            <Typography className={styles.updateDate}>
+              정보 업데이트 날짜: {restaurant.updateDate}
+            </Typography>
           </Box>
         </Box>
       )}

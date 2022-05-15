@@ -60,7 +60,14 @@ function Header({ isLogin, onLogout }) {
           </Tooltip>
           {isLogin ? (
             <Tooltip title="로그아웃" arrow>
-              <IconButton onClick={onLogout}>
+              <IconButton
+                onClick={() => {
+                  if (window.confirm("로그아웃 하시겠습니까?")) {
+                    onLogout();
+                    alert("로그아웃 되었습니다");
+                  }
+                }}
+              >
                 <img
                   className={styles.profile}
                   src={user.photoURL}

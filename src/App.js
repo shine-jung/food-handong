@@ -24,7 +24,9 @@ const theme = createTheme({
       main: "hsl(210,8%,15%)",
     },
     secondary: {
-      main: "hsl(210,8%,45%)",
+      main: "#ef5350",
+      light: "#ef5350",
+      dark: "#ef5350",
     },
     text: {
       logo: "#333333",
@@ -34,6 +36,16 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: "'EliceDigitalBaeum', sans-serif",
+    reviewTitle: {
+      fontFamily: "'NanumBarunGothic', sans-serif",
+      color: "rgb(55 65 81)",
+      fontSize: "15px",
+    },
+    reviewTime: {
+      fontFamily: "'NanumBarunGothic', sans-serif",
+      color: "rgb(156 163 175)",
+      fontSize: "15px",
+    },
   },
 });
 

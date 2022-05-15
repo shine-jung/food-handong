@@ -1,0 +1,62 @@
+.container {
+  display: flex;
+  padding: 0 1rem;
+}
+
+.profileImg {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+}
+
+.content {
+  width: calc(100% - 112px);
+  min-height: 90px;
+  padding: 1rem;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0/0.1), 0 1px 2px -1px rgb(0 0 0/0.1);
+}
+
+.reviewHeader {
+  display: block;
+  margin-bottom: 10px;
+}
+
+@media screen and (min-width: 600px) {
+  .reviewHeader {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.reviewTitle {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.starInfo {
+  display: flex;
+  margin-top: 2px;
+}
+
+.stars {
+  align-items: flex-end;
+  margin-right: 5px;
+}
+
+.starIcon {
+  width: 16.5px;
+}
+
+.review {
+  width: 100%;
+  word-wrap: break-word;
+}
+
+.removeBtn {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
