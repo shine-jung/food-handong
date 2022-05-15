@@ -116,7 +116,7 @@ function ReviewList({ restaurant }) {
               </Box>
               <Typography className={styles.review}>{review.review}</Typography>
               <Box className={styles.removeBtn}>
-                {user.uid === review.uid && (
+                {user && user.uid === review.uid && (
                   <Tooltip title="리뷰 삭제" arrow>
                     <IconButton
                       onClick={() => {
