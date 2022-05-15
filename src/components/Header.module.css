@@ -8,6 +8,14 @@
   width: 36px;
 }
 
+.title {
+  flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: none;
+}
+
 .profile {
   width: 28px;
   border-radius: 50%;

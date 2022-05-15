@@ -1,29 +1,77 @@
-.container {
-  transition: all 0.1s linear;
-}
-
-.container:hover {
-  transform: scale(1.02);
-}
-
 .paper {
-  max-width: 500px;
-  flex-grow: 1;
+  display: flex;
   padding: 16px;
   border-radius: 0.5rem;
   box-shadow: 0 4px 6px -1px rgb(0 0 0/0.1), 0 2px 4px -2px rgb(0 0 0/0.1);
   cursor: pointer;
+  transition: all 0.1s linear;
+}
+
+.paper:hover {
+  transform: scale(1.02);
+}
+
+.imgContainer {
+  min-width: 120px;
+  margin-right: 16px;
+}
+
+.img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.infoContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.textContainer {
+  display: block;
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 400px) {
+  .textContainer {
+    display: flex;
+  }
+}
+
+.info {
+  width: 146px;
 }
 
 .menu {
-  width: 120px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.img {
-  width: 150px;
-  height: 160px;
-  object-fit: cover;
+.statusContainer {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 0.8rem;
+}
+
+.status {
+  margin-right: 10px;
+}
+
+.starIcon {
+  color: #ffcc33;
+  margin-right: 5px;
+}
+
+.heartIcon {
+  color: #ff6666;
+  margin-right: 5px;
+}
+
+.commentIcon {
+  color: #33cccc;
+  margin-right: 5px;
 }

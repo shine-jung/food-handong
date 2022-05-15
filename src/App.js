@@ -10,21 +10,42 @@ import {
 import "./App.css";
 
 const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 820,
+      lg: 1252,
+      xl: 1920,
+    },
+  },
   palette: {
     primary: {
-      main: "#B92146",
+      main: "hsl(210,8%,15%)",
     },
     secondary: {
-      main: "#CC3333",
+      main: "#ef5350",
+      light: "#ef5350",
+      dark: "#ef5350",
     },
     text: {
-      title: "hsl(210,8%,15%)",
+      logo: "#333333",
       primary: "hsl(210,8%,15%)",
       secondary: "hsl(210,8%,45%)",
     },
   },
   typography: {
     fontFamily: "'EliceDigitalBaeum', sans-serif",
+    reviewTitle: {
+      fontFamily: "'NanumBarunGothic', sans-serif",
+      color: "rgb(55 65 81)",
+      fontSize: "15px",
+    },
+    reviewTime: {
+      fontFamily: "'NanumBarunGothic', sans-serif",
+      color: "rgb(156 163 175)",
+      fontSize: "15px",
+    },
   },
 });
 

@@ -16,12 +16,12 @@ function Login({ auth }) {
     auth.onAuthChange((user) => {
       user && goToHome(user.uid);
     });
-  });
+  }, []);
   return (
     <>
       <Header isLogin={false} onLogout={false} />
       <div className={styles.container}>
-        <Button onClick={onLogin} variant="contained">
+        <Button onClick={onLogin} variant="contained" color="secondary">
           <img
             className={styles.google}
             src={process.env.PUBLIC_URL + "/google.png"}

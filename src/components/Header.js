@@ -37,12 +37,12 @@ function Header({ isLogin, onLogout }) {
             </IconButton>
           </Tooltip>
           <Typography
+            className={styles.title}
             variant="h6"
             component="div"
-            color="text.title"
-            sx={{ flexGrow: 1 }}
+            color="text.logo"
           >
-            한슐랭 가이드
+            한동맛나
           </Typography>
           <Tooltip title="GitHub 링크" arrow sx={{ mr: 0.5 }}>
             <IconButton
@@ -60,7 +60,14 @@ function Header({ isLogin, onLogout }) {
           </Tooltip>
           {isLogin ? (
             <Tooltip title="로그아웃" arrow>
-              <IconButton onClick={onLogout}>
+              <IconButton
+                onClick={() => {
+                  if (window.confirm("로그아웃 하시겠습니까?")) {
+                    onLogout();
+                    alert("로그아웃 되었습니다");
+                  }
+                }}
+              >
                 <img
                   className={styles.profile}
                   src={user.photoURL}
