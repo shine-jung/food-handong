@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Login from "./routes/Login";
 import Home from "./routes/Home";
+import Profile from "./routes/Profile";
 import Detail from "./routes/Detail";
 import {
   createTheme,
@@ -56,6 +57,7 @@ function App({ auth }) {
         <Routes>
           <Route path="/login" element={<Login auth={auth} />} />
           <Route path="/" element={<Home auth={auth} />} />
+          <Route path="/profile" element={<Profile auth={auth} />} />
           <Route path="/restaurant/:id" element={<Detail auth={auth} />} />
         </Routes>
       </ThemeProvider>
