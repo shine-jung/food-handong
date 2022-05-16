@@ -1,9 +1,9 @@
-import { signInWithRedirect, signOut, onAuthStateChanged } from "firebase/auth";
+import { signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth, provider } from "./firebase";
 
 class Auth {
   login() {
-    signInWithRedirect(firebaseAuth, provider);
+    signInWithPopup(firebaseAuth, provider);
   }
   logout() {
     signOut(firebaseAuth);

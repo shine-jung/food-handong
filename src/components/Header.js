@@ -54,7 +54,11 @@ function Header({ isLogin, onLogout }) {
             </IconButton>
           </Tooltip>
           <Tooltip title="피드백 남기기" arrow sx={{ mr: 0.5 }}>
-            <IconButton>
+            <IconButton
+              href="https://docs.google.com/forms/d/e/1FAIpQLSdOSIx7dJ3IabUzJi3fIiixXLkevRdRFJvuhhlXI9FZLA_VcQ/viewform?usp=sf_link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FeedbackIcon />
             </IconButton>
           </Tooltip>
