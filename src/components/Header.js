@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { firebaseAuth } from "../service/firebase";
 import {
@@ -7,6 +8,8 @@ import {
   Toolbar,
   Tooltip,
   Typography,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import FeedbackIcon from "@mui/icons-material/Feedback";
@@ -16,6 +19,13 @@ import styles from "./Header.module.css";
 function Header({ isLogin, onLogout }) {
   const navigate = useNavigate();
   const user = firebaseAuth.currentUser;
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar className={styles.header} position="fixed">
@@ -63,22 +73,53 @@ function Header({ isLogin, onLogout }) {
             </IconButton>
           </Tooltip>
           {isLogin ? (
-            <Tooltip title="로그아웃" arrow>
-              <IconButton
-                onClick={() => {
-                  if (window.confirm("로그아웃 하시겠습니까?")) {
-                    onLogout();
-                    alert("로그아웃 되었습니다");
-                  }
+            <Box>
+              <Tooltip title="설정 열기" arrow>
+                <IconButton onClick={handleOpenUserMenu}>
+                  <img
+                    className={styles.profile}
+                    src={user.photoURL}
+                    alt={user.displayName}
+                  />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "35px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
                 }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
               >
-                <img
-                  className={styles.profile}
-                  src={user.photoURL}
-                  alt={user.displayName}
-                />
-              </IconButton>
-            </Tooltip>
+                <MenuItem
+                  onClick={() => {
+                    navigate({ pathname: "/profile" });
+                    handleCloseUserMenu();
+                  }}
+                >
+                  프로필
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    if (window.confirm("로그아웃 하시겠습니까?")) {
+                      onLogout();
+                      alert("로그아웃 되었습니다");
+                    }
+                    handleCloseUserMenu();
+                  }}
+                >
+                  로그아웃
+                </MenuItem>
+              </Menu>
+            </Box>
           ) : (
             <Tooltip title="로그인" arrow>
               <IconButton onClick={() => navigate({ pathname: "/login" })}>
