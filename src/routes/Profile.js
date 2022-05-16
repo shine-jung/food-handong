@@ -15,14 +15,7 @@ function Profile({ auth }) {
   const onLogout = useCallback(() => {
     auth.logout();
   }, [auth]);
-  const onChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setNewDisplayName(value);
-  };
-  const onSubmit = async (event) => {
-    event.preventDefault();
+  const saveProfile = async () => {
     if (!newDisplayName) {
       alert("새로운 이름을 입력해주세요");
       return;
@@ -67,7 +60,6 @@ function Profile({ auth }) {
               className={styles.textField}
               disabled
               value={user.email}
-              onChange={onChange}
               label="Email"
               color="secondary"
               size="small"
@@ -76,7 +68,7 @@ function Profile({ auth }) {
             <TextField
               className={styles.textField}
               value={newDisplayName}
-              onChange={onChange}
+              onChange={(e) => setNewDisplayName(e.target.value)}
               label="Name"
               placeholder="새로운 이름을 적어주세요"
               color="secondary"
@@ -84,7 +76,11 @@ function Profile({ auth }) {
               fullWidth
             />
             <Box className={styles.submitBtnContainer}>
-              <Button onClick={onSubmit} variant="contained" color="secondary">
+              <Button
+                onClick={saveProfile}
+                variant="contained"
+                color="secondary"
+              >
                 저장
               </Button>
             </Box>
