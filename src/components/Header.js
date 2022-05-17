@@ -37,11 +37,11 @@ function Header({ isLogin, onLogout }) {
               edge="start"
               color="primary"
               aria-label="logo"
-              sx={{ mr: 1.5 }}
+              sx={{ mr: 1 }}
             >
               <img
                 className={styles.logo}
-                src={process.env.PUBLIC_URL + "/logo.svg"}
+                src={process.env.PUBLIC_URL + "/logo192.png"}
                 alt="logo"
               />
             </IconButton>
