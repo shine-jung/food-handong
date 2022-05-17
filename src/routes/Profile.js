@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { updateProfile } from "firebase/auth";
 import { firebaseAuth } from "../service/firebase";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 import styles from "./Profile.module.css";
 
@@ -85,6 +86,9 @@ function Profile({ auth }) {
               </Button>
             </Box>
           </Paper>
+          <Box className={styles.footer}>
+            <Footer />
+          </Box>
         </Box>
       )}
     </>

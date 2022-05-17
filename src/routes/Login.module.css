@@ -1,6 +1,6 @@
 .root {
   width: 100%;
-  min-height: calc(100vh - 50px);
+  min-height: calc(100vh - 56px);
   margin-top: 56px;
   display: flex;
   justify-content: center;

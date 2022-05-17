@@ -1,12 +1,12 @@
 .root {
   width: 100%;
-  min-height: calc(100vh - 50px);
+  min-height: calc(100vh - 56px);
   margin-top: 56px;
   background-color: rgb(249 250 251);
 }
 
 .container {
-  min-height: calc(100vh - 153.5px - 5rem);
+  min-height: calc(100vh - 56px - 8rem - 47.5px);
   padding: 3rem 5% 5rem;
 }
 
