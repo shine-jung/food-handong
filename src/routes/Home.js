@@ -69,7 +69,7 @@ function Home({ auth }) {
                   value={searchText}
                   autoComplete="off"
                   name="search"
-                  placeholder="식당을 검색하세요"
+                  placeholder="Search..."
                 />
               </Box>
               <Select
