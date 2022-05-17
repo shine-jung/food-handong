@@ -10,6 +10,7 @@ import {
   Typography,
   Menu,
   MenuItem,
+  ButtonBase,
 } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import FeedbackIcon from "@mui/icons-material/Feedback";
@@ -31,20 +32,16 @@ function Header({ isLogin, onLogout }) {
       <AppBar className={styles.header} position="fixed">
         <Toolbar>
           <Tooltip title="홈 화면" arrow>
-            <IconButton
+            <ButtonBase
+              className={styles.logoBtn}
               onClick={() => navigate({ pathname: "/" })}
-              size="medium"
-              edge="start"
-              color="primary"
-              aria-label="logo"
-              sx={{ mr: 1 }}
             >
               <img
-                className={styles.logo}
+                className={styles.logoImg}
                 src={process.env.PUBLIC_URL + "/logo192.png"}
                 alt="logo"
               />
-            </IconButton>
+            </ButtonBase>
           </Tooltip>
           <Typography
             className={styles.title}
