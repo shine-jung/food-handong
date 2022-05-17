@@ -5,9 +5,6 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import styles from "./Login.module.css";
 
-const images = ["0.jpg", "1.jpg", "2.jpg", "3.jpg", "4.jpg"];
-const chosenImage = images[Math.floor(Math.random() * images.length)];
-
 function Login({ auth }) {
   const navigate = useNavigate();
   const onLogin = () => {
@@ -29,9 +26,7 @@ function Login({ auth }) {
         sx={{
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundImage: `url(${
-            process.env.PUBLIC_URL + `/img/${chosenImage}`
-          })`,
+          backgroundImage: `url(${process.env.PUBLIC_URL + "/background.jpg"})`,
         }}
       >
         <Paper className={styles.container}>
