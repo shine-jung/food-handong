@@ -83,10 +83,7 @@ function ReviewList({ restaurant }) {
             />
             <Paper className={styles.content}>
               <Box className={styles.reviewHeader}>
-                <Typography
-                  className={styles.reviewTitle}
-                  variant="reviewTitle"
-                >
+                <Typography className={styles.reviewTitle} variant="normal">
                   {review.displayName}
                   <Typography className={styles.starInfo}>
                     <Rating
@@ -110,7 +107,7 @@ function ReviewList({ restaurant }) {
                     <Box>{review.star}</Box>
                   </Typography>
                 </Typography>
-                <Typography variant="reviewTime" color="text.secondary">
+                <Typography variant="normal" color="text.secondary">
                   {displayedAt(review.uploadTime.toDate())}
                 </Typography>
               </Box>

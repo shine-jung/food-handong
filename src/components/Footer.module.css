@@ -1,0 +1,12 @@
+.footer {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 30px;
+}
+
+.owner {
+  font-weight: 700;
+  color: #ef5350;
+}

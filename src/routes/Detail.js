@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { ref, onValue } from "firebase/database";
 import database from "../service/firebase";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import AddReview from "../components/AddReview";
 import ReviewList from "../components/ReviewList";
 import Map from "../components/Map";
@@ -242,6 +243,7 @@ function Detail({ auth }) {
               정보 업데이트 날짜: {restaurant.updateDate}
             </Typography>
           </Box>
+          <Footer />
         </Box>
       )}
     </>

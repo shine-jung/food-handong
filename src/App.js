@@ -37,14 +37,9 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: "'EliceDigitalBaeum', sans-serif",
-    reviewTitle: {
+    normal: {
       fontFamily: "'NanumBarunGothic', sans-serif",
       color: "rgb(55 65 81)",
-      fontSize: "15px",
-    },
-    reviewTime: {
-      fontFamily: "'NanumBarunGothic', sans-serif",
-      color: "rgb(156 163 175)",
       fontSize: "15px",
     },
   },
