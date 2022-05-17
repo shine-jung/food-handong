@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { ref, onValue } from "firebase/database";
 import database from "../service/firebase";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import List from "../components/List";
 import { Box, InputBase, Select, MenuItem, styled } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
@@ -90,6 +91,7 @@ function Home({ auth }) {
               restaurants={restaurants}
             />
           </Box>
+          <Footer />
         </Box>
       )}
     </>
