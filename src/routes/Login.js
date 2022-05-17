@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, Typography, Paper } from "@mui/material";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import styles from "./Login.module.css";
 
 const images = ["0.jpg", "1.jpg", "2.jpg", "3.jpg", "4.jpg"];
@@ -47,6 +48,9 @@ function Login({ auth }) {
             구글 계정으로 시작하기
           </Button>
         </Paper>
+        <Box className={styles.footer}>
+          <Footer />
+        </Box>
       </Box>
     </>
   );
