@@ -8,14 +8,11 @@ import styles from "./Login.module.css";
 function Login({ auth }) {
   const navigate = useNavigate();
   const onLogin = () => {
-    auth.login().then((data) => goToHome(data.user.uid));
-  };
-  const goToHome = (userId) => {
-    navigate({ pathname: "/", state: { id: userId } });
+    auth.login();
   };
   useEffect(() => {
     auth.onAuthChange((user) => {
-      user && goToHome(user.uid);
+      user && navigate({ pathname: "/" });
     });
   }, []);
   return (
