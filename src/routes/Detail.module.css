@@ -29,6 +29,12 @@
   padding: 10px 15px 15px 15px;
 }
 
+.infoHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px 15px 15px;
+}
+
 .info {
   display: block;
 }

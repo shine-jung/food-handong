@@ -81,7 +81,7 @@ function Home({ auth }) {
               >
                 <MenuItem value={"starAvg"}>별점순</MenuItem>
                 <MenuItem value={"likes"}>좋아요순</MenuItem>
-                <MenuItem value={"reviewCount"}>리뷰순</MenuItem>
+                <MenuItem value={"reviewCount"}>리뷰개수순</MenuItem>
                 <MenuItem value={"name"}>식당이름순</MenuItem>
               </Select>
             </Box>

@@ -4,6 +4,7 @@ import { ref, onValue } from "firebase/database";
 import database from "../service/firebase";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Like from "../components/Like";
 import AddReview from "../components/AddReview";
 import ReviewList from "../components/ReviewList";
 import Map from "../components/Map";
@@ -63,9 +64,12 @@ function Detail({ auth }) {
               <Grid item xs={6}>
                 <Box className="info">
                   <Paper className={styles.section}>
-                    <Typography className={styles.title} variant="h6">
-                      {restaurant.officialName}
-                    </Typography>
+                    <Box className={styles.infoHeader}>
+                      <Typography variant="h6">
+                        {restaurant.officialName}
+                      </Typography>
+                      <Like restaurant={restaurant} />
+                    </Box>
                     <Box className={styles.info}>
                       <img
                         className={styles.infoImg}

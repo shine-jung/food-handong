@@ -15,9 +15,10 @@ function List({ searchText, sortBy, restaurants }) {
       for (let i = 0; restaurant.tags && i < restaurant.tags.length; i++)
         if (restaurant.tags[i].toLowerCase().includes(searchText)) return true;
       return (
-        restaurant.name.toLowerCase().includes(searchText) ||
-        restaurant.dong.toLowerCase().includes(searchText) ||
-        restaurant.category.toLowerCase().includes(searchText)
+        restaurant.officialName.toLowerCase().includes(searchText) ||
+        restaurant.category.toLowerCase().includes(searchText) ||
+        restaurant.location.toLowerCase().includes(searchText) ||
+        restaurant.dong.toLowerCase().includes(searchText)
       );
     }
   });
@@ -32,7 +33,7 @@ function List({ searchText, sortBy, restaurants }) {
     } else if (sortBy === "name")
       return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
     else {
-      if (getStarAvg(a) === getStarAvg(b)) return b.likes - a.likes;
+      if (getStarAvg(a) === getStarAvg(b)) return b.reviewCount - a.reviewCount;
       return getStarAvg(b) - getStarAvg(a);
     }
   });
