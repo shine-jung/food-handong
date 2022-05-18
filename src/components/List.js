@@ -9,10 +9,11 @@ function List({ searchText, sortBy, restaurants }) {
     if (searchText === "") {
       return restaurant;
     } else {
-      for (let i = 0; i < restaurant.menus.length; i++) {
+      for (let i = 0; i < restaurant.menus.length; i++)
         if (restaurant.menus[i].title.toLowerCase().includes(searchText))
           return true;
-      }
+      for (let i = 0; restaurant.tags && i < restaurant.tags.length; i++)
+        if (restaurant.tags[i].toLowerCase().includes(searchText)) return true;
       return (
         restaurant.name.toLowerCase().includes(searchText) ||
         restaurant.dong.toLowerCase().includes(searchText) ||

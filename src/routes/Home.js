@@ -69,7 +69,7 @@ function Home({ auth }) {
                   value={searchText}
                   autoComplete="off"
                   name="search"
-                  placeholder="Search..."
+                  placeholder="식당,음식,분류,지역 검색"
                 />
               </Box>
               <Select
