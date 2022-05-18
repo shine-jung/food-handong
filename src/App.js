@@ -3,6 +3,7 @@ import Login from "./routes/Login";
 import Home from "./routes/Home";
 import Profile from "./routes/Profile";
 import Detail from "./routes/Detail";
+import RouteChangeTracker from "./service/RouteChangeTracker";
 import {
   createTheme,
   ThemeProvider,
@@ -46,6 +47,7 @@ const theme = createTheme({
 });
 
 function App({ auth }) {
+  RouteChangeTracker();
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
