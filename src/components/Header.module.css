@@ -11,6 +11,7 @@
 
 .logoImg {
   width: 36px;
+  height: 36px;
 }
 
 .title {
@@ -22,5 +23,6 @@
 
 .profile {
   width: 28px;
+  height: 28px;
   border-radius: 50%;
 }
