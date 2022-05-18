@@ -30,11 +30,15 @@
   margin-bottom: 1.5rem;
 }
 
-.profileImg {
-  width: 48px;
-  border-radius: 50%;
+.imgContainer {
   padding-left: 5px;
   margin-bottom: 1.5rem;
+}
+
+.profileImg {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
 }
 
 .textField {

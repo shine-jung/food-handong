@@ -52,11 +52,13 @@ function Profile({ auth }) {
             <Typography className={styles.title} variant="h6">
               Profile
             </Typography>
-            <img
-              className={styles.profileImg}
-              src={user.photoURL}
-              alt={user.displayName}
-            />
+            <Box className={styles.imgContainer}>
+              <img
+                className={styles.profileImg}
+                src={user.photoURL}
+                alt={user.displayName}
+              />
+            </Box>
             <TextField
               className={styles.textField}
               disabled
