@@ -23,11 +23,18 @@ function List({ searchText, sortBy, restaurants }) {
   });
   const getStarAvg = (obj) => (obj.starCount ? obj.starSum / obj.starCount : 0);
   const sortedList = filteredList.sort((a, b) => {
-    if (sortBy === "likes") return b.likes - a.likes;
-    else if (sortBy === "reviewCount") return b.reviewCount - a.reviewCount;
-    else if (sortBy === "name")
+    if (sortBy === "likes") {
+      if (a.likes === b.likes) return getStarAvg(b) - getStarAvg(a);
+      return b.likes - a.likes;
+    } else if (sortBy === "reviewCount") {
+      if (a.reviewCount === b.reviewCount) return getStarAvg(b) - getStarAvg(a);
+      return b.reviewCount - a.reviewCount;
+    } else if (sortBy === "name")
       return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
-    else return getStarAvg(b) - getStarAvg(a);
+    else {
+      if (getStarAvg(a) === getStarAvg(b)) return b.likes - a.likes;
+      return getStarAvg(b) - getStarAvg(a);
+    }
   });
   return (
     <>
