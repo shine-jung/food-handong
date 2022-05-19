@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { ref, onValue } from "firebase/database";
 import database from "../service/firebase";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import List from "../components/List";
 import { Box, InputBase, Select, MenuItem, styled } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
@@ -68,7 +69,7 @@ function Home({ auth }) {
                   value={searchText}
                   autoComplete="off"
                   name="search"
-                  placeholder="식당을 검색하세요"
+                  placeholder="식당,음식,분류,지역 검색"
                 />
               </Box>
               <Select
@@ -80,7 +81,7 @@ function Home({ auth }) {
               >
                 <MenuItem value={"starAvg"}>별점순</MenuItem>
                 <MenuItem value={"likes"}>좋아요순</MenuItem>
-                <MenuItem value={"reviewCount"}>리뷰순</MenuItem>
+                <MenuItem value={"reviewCount"}>리뷰개수순</MenuItem>
                 <MenuItem value={"name"}>식당이름순</MenuItem>
               </Select>
             </Box>
@@ -90,6 +91,7 @@ function Home({ auth }) {
               restaurants={restaurants}
             />
           </Box>
+          <Footer />
         </Box>
       )}
     </>

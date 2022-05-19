@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { ref, onValue } from "firebase/database";
 import database from "../service/firebase";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
+import Like from "../components/Like";
 import AddReview from "../components/AddReview";
 import ReviewList from "../components/ReviewList";
 import Map from "../components/Map";
@@ -60,98 +62,100 @@ function Detail({ auth }) {
               columns={{ xs: 6, md: 12 }}
             >
               <Grid item xs={6}>
-                <Box className="info">
-                  <Paper className={styles.section}>
-                    <Typography className={styles.title} variant="h6">
+                <Paper className={styles.section}>
+                  <Box className={styles.infoHeader}>
+                    <Typography variant="h6">
                       {restaurant.officialName}
                     </Typography>
-                    <Box className={styles.info}>
-                      <img
-                        className={styles.infoImg}
-                        src={restaurant.imgSrc}
-                        alt={restaurant.officialName}
-                      />
-                      <Box>
-                        <Typography className={styles.statusContainer}>
-                          <Box className={styles.status}>
-                            <FontAwesomeIcon
-                              className={styles.starIcon}
-                              icon={faStar}
-                            />
-                            {(restaurant.starCount
-                              ? restaurant.starSum / restaurant.starCount
-                              : 0
-                            ).toFixed(1)}
-                          </Box>
-                          <Box className={styles.status}>
-                            <FontAwesomeIcon
-                              className={styles.heartIcon}
-                              icon={faHeart}
-                            />
-                            {restaurant.likes}
-                          </Box>
-                          <Box>
-                            <FontAwesomeIcon
-                              className={styles.commentIcon}
-                              icon={faComment}
-                            />
-                            {restaurant.reviewCount}
-                          </Box>
-                        </Typography>
-                        <Typography className={styles.infoText}>
-                          {restaurant.category}
-                        </Typography>
-                        <Typography className={styles.infoText}>
-                          {restaurant.dong}
-                        </Typography>
-                        <Typography className={styles.infoText}>
-                          {restaurant.location}
-                        </Typography>
-                        <Box className={styles.hours}>
-                          {restaurant.openingHours === "정보가 없어요" ? (
-                            <Typography>영업시간 정보가 없어요 😭</Typography>
-                          ) : restaurant.openingHours["매일"] ? (
-                            <>
+                    <Like restaurant={restaurant} />
+                  </Box>
+                  <Box className={styles.info}>
+                    <img
+                      className={styles.infoImg}
+                      src={restaurant.imgSrc}
+                      alt={restaurant.officialName}
+                    />
+                    <Box>
+                      <Typography className={styles.statusContainer}>
+                        <Box className={styles.status}>
+                          <FontAwesomeIcon
+                            className={styles.starIcon}
+                            icon={faStar}
+                          />
+                          {(restaurant.starCount
+                            ? restaurant.starSum / restaurant.starCount
+                            : 0
+                          ).toFixed(1)}
+                        </Box>
+                        <Box className={styles.status}>
+                          <FontAwesomeIcon
+                            className={styles.heartIcon}
+                            icon={faHeart}
+                          />
+                          {restaurant.likes}
+                        </Box>
+                        <Box>
+                          <FontAwesomeIcon
+                            className={styles.commentIcon}
+                            icon={faComment}
+                          />
+                          {restaurant.reviewCount}
+                        </Box>
+                      </Typography>
+                      <Typography className={styles.infoText}>
+                        {restaurant.category}
+                      </Typography>
+                      <Typography className={styles.infoText}>
+                        {restaurant.dong}
+                      </Typography>
+                      <Typography className={styles.infoText}>
+                        {restaurant.location}
+                      </Typography>
+                      <Box className={styles.hours}>
+                        {restaurant.openingHours === "정보가 없어요" ? (
+                          <Typography>영업시간 정보가 없어요 😭</Typography>
+                        ) : restaurant.openingHours["매일"] ? (
+                          <>
+                            <Typography className={styles.day}>
+                              매일 :
+                            </Typography>
+                            <Box>
+                              {restaurant.openingHours["매일"]
+                                .split("\n")
+                                .map((line, index) => (
+                                  <Typography key={index}>
+                                    {line}
+                                    <br />
+                                  </Typography>
+                                ))}
+                            </Box>
+                          </>
+                        ) : (
+                          <Tooltip title="전체 요일 보기" arrow>
+                            <ButtonBase>
                               <Typography className={styles.day}>
-                                매일 :
+                                {days[today]}요일 :
                               </Typography>
                               <Box>
-                                {restaurant.openingHours["매일"]
+                                {restaurant.openingHours[days[today]]
                                   .split("\n")
                                   .map((line, index) => (
-                                    <Typography key={index}>
+                                    <Typography
+                                      key={index}
+                                      sx={{ textAlign: "left" }}
+                                    >
                                       {line}
                                       <br />
                                     </Typography>
                                   ))}
                               </Box>
-                            </>
-                          ) : (
-                            <Tooltip title="전체 요일 보기" arrow>
-                              <ButtonBase>
-                                <Typography className={styles.day}>
-                                  {days[today]}요일 :
-                                </Typography>
-                                <Box>
-                                  {restaurant.openingHours[days[today]]
-                                    .split("\n")
-                                    .map((line, index) => (
-                                      <Typography
-                                        key={index}
-                                        sx={{ textAlign: "left" }}
-                                      >
-                                        {line}
-                                        <br />
-                                      </Typography>
-                                    ))}
-                                </Box>
-                              </ButtonBase>
-                            </Tooltip>
-                          )}
-                        </Box>
+                            </ButtonBase>
+                          </Tooltip>
+                        )}
                       </Box>
                     </Box>
-                    {/* <Box>
+                  </Box>
+                  {/* <Box>
                       {days
                       .filter((day) => restaurant.openingHours[day])
                       .map((day, index) => (
@@ -170,66 +174,65 @@ function Detail({ auth }) {
                         </Box>
                       ))}
                     </Box> */}
-                  </Paper>
-                  <Paper className={styles.section}>
-                    <Typography className={styles.title} variant="h6">
-                      메뉴
-                    </Typography>
-                    <Tabs
-                      className={styles.menus}
-                      value={false}
-                      orientation="vertical"
-                      variant="scrollable"
-                      scrollButtons="auto"
-                      aria-label="menus"
-                    >
-                      {restaurant.menus.map((menu, index) => (
-                        <Box key={index} className={styles.menu}>
-                          {menu.imgSrc && (
-                            <img
-                              className={styles.menuImg}
-                              src={menu.imgSrc}
-                              alt={menu.title}
-                            />
-                          )}
-                          <Box className={styles.menuText}>
-                            <Typography>{menu.title}</Typography>
-                            <Typography>{menu.price}</Typography>
-                          </Box>
+                </Paper>
+                <Paper className={styles.section}>
+                  <Typography className={styles.title} variant="h6">
+                    메뉴
+                  </Typography>
+                  <Tabs
+                    className={styles.menus}
+                    value={false}
+                    orientation="vertical"
+                    variant="scrollable"
+                    scrollButtons="auto"
+                    aria-label="menus"
+                  >
+                    {restaurant.menus.map((menu, index) => (
+                      <Box key={index} className={styles.menu}>
+                        {menu.imgSrc && (
+                          <img
+                            className={styles.menuImg}
+                            src={menu.imgSrc}
+                            alt={menu.title}
+                          />
+                        )}
+                        <Box className={styles.menuText}>
+                          <Typography>{menu.title}</Typography>
+                          <Typography>{menu.price}</Typography>
                         </Box>
-                      ))}
-                    </Tabs>
-                  </Paper>
-                  <Paper className={styles.section}>
-                    <Box className={styles.mapHeader}>
-                      <Typography variant="h6">지도</Typography>
-                      <Tooltip
-                        title={
-                          centerLocation
-                            ? "식당 위치 보기"
-                            : "식당 & 내 위치 보기"
-                        }
-                        placement="top"
-                        arrow
+                      </Box>
+                    ))}
+                  </Tabs>
+                </Paper>
+                <Paper className={styles.section}>
+                  <Box className={styles.mapHeader}>
+                    <Typography variant="h6">지도</Typography>
+                    <Tooltip
+                      title={
+                        centerLocation
+                          ? "식당 위치 보기"
+                          : "식당 & 내 위치 보기"
+                      }
+                      placement="top"
+                      arrow
+                    >
+                      <Button
+                        onClick={centerBtnClick}
+                        className={styles.centerBtn}
+                        variant="contained"
+                        color="secondary"
                       >
-                        <Button
-                          onClick={centerBtnClick}
-                          className={styles.centerBtn}
-                          variant="contained"
-                          color="secondary"
-                        >
-                          {centerLocation ? "식당 & 내 위치" : "식당 위치"}
-                        </Button>
-                      </Tooltip>
-                    </Box>
-                    <Map
-                      name={restaurant.name}
-                      lat={restaurant.lat}
-                      lon={restaurant.lon}
-                      centerLocation={centerLocation}
-                    />
-                  </Paper>
-                </Box>
+                        {centerLocation ? "식당 & 내 위치" : "식당 위치"}
+                      </Button>
+                    </Tooltip>
+                  </Box>
+                  <Map
+                    name={restaurant.name}
+                    lat={restaurant.lat}
+                    lon={restaurant.lon}
+                    centerLocation={centerLocation}
+                  />
+                </Paper>
               </Grid>
               <Grid item xs={6}>
                 <Paper className={styles.section}>
@@ -242,6 +245,7 @@ function Detail({ auth }) {
               정보 업데이트 날짜: {restaurant.updateDate}
             </Typography>
           </Box>
+          <Footer />
         </Box>
       )}
     </>

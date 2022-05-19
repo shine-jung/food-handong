@@ -1,0 +1,8 @@
+.likeBtn {
+  font-size: 2rem;
+  transition: all 0.1s linear;
+}
+
+.likeBtn:hover {
+  transform: scale(1.1);
+}

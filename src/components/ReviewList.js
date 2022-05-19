@@ -25,17 +25,17 @@ function ReviewList({ restaurant }) {
   const starCount = restaurant.starCount;
   const starSum = restaurant.starSum;
   useEffect(() => {
+    async function getReviewList() {
+      const reviewSnapshot = await getDocs(reviewsCol);
+      setReviewList(
+        reviewSnapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }))
+      );
+    }
     getReviewList();
   }, [reviewCount]);
-  async function getReviewList() {
-    const reviewSnapshot = await getDocs(reviewsCol);
-    setReviewList(
-      reviewSnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }))
-    );
-  }
   async function removeReview(reviewId, uid, star) {
     await updateDoc(doc(firestore, "reviews", reviewId), {
       visible: false,
@@ -47,7 +47,6 @@ function ReviewList({ restaurant }) {
         reviewedUser: reviewedUser.filter((user) => user !== uid),
       });
     });
-    getReviewList();
   }
   // https://gofnrk.tistory.com/117
   function displayedAt(uploadTime) {
@@ -83,12 +82,9 @@ function ReviewList({ restaurant }) {
             />
             <Paper className={styles.content}>
               <Box className={styles.reviewHeader}>
-                <Typography
-                  className={styles.reviewTitle}
-                  variant="reviewTitle"
-                >
+                <Typography className={styles.reviewTitle} variant="normal">
                   {review.displayName}
-                  <Typography className={styles.starInfo}>
+                  <Box className={styles.starInfo}>
                     <Rating
                       className={styles.stars}
                       value={review.star}
@@ -107,16 +103,16 @@ function ReviewList({ restaurant }) {
                         />
                       }
                     />
-                    <Box>{review.star}</Box>
-                  </Typography>
+                    <Typography>{review.star}</Typography>
+                  </Box>
                 </Typography>
-                <Typography variant="reviewTime" color="text.secondary">
+                <Typography variant="normal" color="text.secondary">
                   {displayedAt(review.uploadTime.toDate())}
                 </Typography>
               </Box>
               <Typography className={styles.review}>{review.review}</Typography>
               <Box className={styles.removeBtn}>
-                {user.uid === review.uid && (
+                {user && user.uid === review.uid && (
                   <Tooltip title="리뷰 삭제" arrow>
                     <IconButton
                       onClick={() => {

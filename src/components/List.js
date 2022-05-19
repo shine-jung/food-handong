@@ -9,24 +9,33 @@ function List({ searchText, sortBy, restaurants }) {
     if (searchText === "") {
       return restaurant;
     } else {
-      for (let i = 0; i < restaurant.menus.length; i++) {
+      for (let i = 0; i < restaurant.menus.length; i++)
         if (restaurant.menus[i].title.toLowerCase().includes(searchText))
           return true;
-      }
+      for (let i = 0; restaurant.tags && i < restaurant.tags.length; i++)
+        if (restaurant.tags[i].toLowerCase().includes(searchText)) return true;
       return (
-        restaurant.name.toLowerCase().includes(searchText) ||
-        restaurant.dong.toLowerCase().includes(searchText) ||
-        restaurant.category.toLowerCase().includes(searchText)
+        restaurant.officialName.toLowerCase().includes(searchText) ||
+        restaurant.category.toLowerCase().includes(searchText) ||
+        restaurant.location.toLowerCase().includes(searchText) ||
+        restaurant.dong.toLowerCase().includes(searchText)
       );
     }
   });
   const getStarAvg = (obj) => (obj.starCount ? obj.starSum / obj.starCount : 0);
   const sortedList = filteredList.sort((a, b) => {
-    if (sortBy === "likes") return b.likes - a.likes;
-    else if (sortBy === "reviewCount") return b.reviewCount - a.reviewCount;
-    else if (sortBy === "name")
+    if (sortBy === "likes") {
+      if (a.likes === b.likes) return getStarAvg(b) - getStarAvg(a);
+      return b.likes - a.likes;
+    } else if (sortBy === "reviewCount") {
+      if (a.reviewCount === b.reviewCount) return getStarAvg(b) - getStarAvg(a);
+      return b.reviewCount - a.reviewCount;
+    } else if (sortBy === "name")
       return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
-    else return getStarAvg(b) - getStarAvg(a);
+    else {
+      if (getStarAvg(a) === getStarAvg(b)) return b.reviewCount - a.reviewCount;
+      return getStarAvg(b) - getStarAvg(a);
+    }
   });
   return (
     <>

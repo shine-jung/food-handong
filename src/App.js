@@ -1,6 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import Login from "./routes/Login";
 import Home from "./routes/Home";
+import Profile from "./routes/Profile";
+import Dashboard from "./routes/Dashboard";
 import Detail from "./routes/Detail";
 import {
   createTheme,
@@ -36,14 +38,9 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: "'EliceDigitalBaeum', sans-serif",
-    reviewTitle: {
+    normal: {
       fontFamily: "'NanumBarunGothic', sans-serif",
       color: "rgb(55 65 81)",
-      fontSize: "15px",
-    },
-    reviewTime: {
-      fontFamily: "'NanumBarunGothic', sans-serif",
-      color: "rgb(156 163 175)",
       fontSize: "15px",
     },
   },
@@ -56,6 +53,8 @@ function App({ auth }) {
         <Routes>
           <Route path="/login" element={<Login auth={auth} />} />
           <Route path="/" element={<Home auth={auth} />} />
+          <Route path="/dashboard" element={<Dashboard auth={auth} />} />
+          <Route path="/profile" element={<Profile auth={auth} />} />
           <Route path="/restaurant/:id" element={<Detail auth={auth} />} />
         </Routes>
       </ThemeProvider>
