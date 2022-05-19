@@ -47,7 +47,7 @@ function Like({ restaurant }) {
         <ButtonBase
           onClick={likeBtnClick}
           sx={{
-            color: isLiked ? "#ff3d47" : "rgb(218, 218, 218)",
+            color: isLiked ? "#ff6666" : "rgb(218, 218, 218)",
           }}
           disableRipple
         >
