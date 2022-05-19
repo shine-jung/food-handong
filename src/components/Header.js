@@ -99,11 +99,19 @@ function Header({ isLogin, onLogout }) {
               >
                 <MenuItem
                   onClick={() => {
+                    navigate({ pathname: "/dashboard" });
+                    handleCloseUserMenu();
+                  }}
+                >
+                  대시보드
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
                     navigate({ pathname: "/profile" });
                     handleCloseUserMenu();
                   }}
                 >
-                  프로필
+                  프로필 설정
                 </MenuItem>
                 <MenuItem
                   onClick={() => {

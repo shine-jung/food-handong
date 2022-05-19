@@ -84,7 +84,7 @@ function ReviewList({ restaurant }) {
               <Box className={styles.reviewHeader}>
                 <Typography className={styles.reviewTitle} variant="normal">
                   {review.displayName}
-                  <Typography className={styles.starInfo}>
+                  <Box className={styles.starInfo}>
                     <Rating
                       className={styles.stars}
                       value={review.star}
@@ -103,8 +103,8 @@ function ReviewList({ restaurant }) {
                         />
                       }
                     />
-                    <Box>{review.star}</Box>
-                  </Typography>
+                    <Typography>{review.star}</Typography>
+                  </Box>
                 </Typography>
                 <Typography variant="normal" color="text.secondary">
                   {displayedAt(review.uploadTime.toDate())}
