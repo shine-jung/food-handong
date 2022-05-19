@@ -15,16 +15,13 @@ function Like({ restaurant }) {
   const [likes, setLikes] = useState();
   const [likedUser, setLikedUser] = useState();
   useEffect(() => {
-    getLikeInfo();
-  }, [likes]);
-  function getLikeInfo() {
     onValue(restaurantRef, (snapshot) => {
       const data = snapshot.val();
       setIsLiked(user && data.likedUser && data.likedUser.includes(user.uid));
       setLikes(data.likes);
       setLikedUser(data.likedUser);
     });
-  }
+  }, []);
   async function likeBtnClick() {
     if (!user) {
       if (window.confirm("로그인 하시겠습니까?"))
@@ -43,7 +40,6 @@ function Like({ restaurant }) {
         likedUser: likedUser ? [...likedUser, uid] : [uid],
       });
     }
-    getLikeInfo();
   }
   return (
     <>
@@ -51,7 +47,7 @@ function Like({ restaurant }) {
         <ButtonBase
           onClick={likeBtnClick}
           sx={{
-            color: isLiked ? "#ff6666" : "rgb(218, 218, 218)",
+            color: isLiked ? "#ff3d47" : "rgb(218, 218, 218)",
           }}
           disableRipple
         >

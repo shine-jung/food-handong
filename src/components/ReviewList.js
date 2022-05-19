@@ -25,17 +25,17 @@ function ReviewList({ restaurant }) {
   const starCount = restaurant.starCount;
   const starSum = restaurant.starSum;
   useEffect(() => {
+    async function getReviewList() {
+      const reviewSnapshot = await getDocs(reviewsCol);
+      setReviewList(
+        reviewSnapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }))
+      );
+    }
     getReviewList();
   }, [reviewCount]);
-  async function getReviewList() {
-    const reviewSnapshot = await getDocs(reviewsCol);
-    setReviewList(
-      reviewSnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }))
-    );
-  }
   async function removeReview(reviewId, uid, star) {
     await updateDoc(doc(firestore, "reviews", reviewId), {
       visible: false,
@@ -47,7 +47,6 @@ function ReviewList({ restaurant }) {
         reviewedUser: reviewedUser.filter((user) => user !== uid),
       });
     });
-    getReviewList();
   }
   // https://gofnrk.tistory.com/117
   function displayedAt(uploadTime) {
