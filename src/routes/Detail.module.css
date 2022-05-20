@@ -64,6 +64,15 @@
   margin-left: 4px;
 }
 
+.popHoursContainer {
+  padding: 8px 12px 4px;
+}
+
+.popHours {
+  display: flex;
+  margin-bottom: 4px;
+}
+
 .day {
   align-self: start;
   white-space: nowrap;
