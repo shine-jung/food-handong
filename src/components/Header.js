@@ -72,7 +72,7 @@ function Header({ isLogin, onLogout }) {
           </Tooltip>
           {isLogin ? (
             <Box>
-              <Tooltip title="설정 열기" arrow>
+              <Tooltip title="메뉴 열기" arrow>
                 <IconButton onClick={handleOpenUserMenu}>
                   <img
                     className={styles.profile}

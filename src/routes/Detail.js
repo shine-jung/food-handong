@@ -17,6 +17,7 @@ import {
   Button,
   ButtonBase,
   Tooltip,
+  Popover,
 } from "@mui/material";
 import { faStar, faHeart, faComment } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -31,13 +32,8 @@ function Detail({ auth }) {
   const [restaurant, setRestaurant] = useState({});
   const restaurantRef = ref(database, `restaurants/${id}`);
   const [centerLocation, setCenterLocation] = useState(false); // 0: 식당 위치, 1: 식당 & 내 위치
-
-  const onLogout = useCallback(() => {
-    auth.logout();
-  }, [auth]);
-  const centerBtnClick = () => {
-    setCenterLocation((prev) => !prev);
-  };
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
   useEffect(() => {
     auth.onAuthChange((user) => {
       user ? setIsLogin(true) : setIsLogin(false);
@@ -48,6 +44,18 @@ function Detail({ auth }) {
       setLoading(false);
     });
   }, []);
+  const onLogout = useCallback(() => {
+    auth.logout();
+  }, [auth]);
+  const centerBtnClick = () => {
+    setCenterLocation((prev) => !prev);
+  };
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <>
       <Header isLogin={isLogin} onLogout={onLogout} />
@@ -131,26 +139,65 @@ function Detail({ auth }) {
                             </Box>
                           </>
                         ) : (
-                          <Tooltip title="전체 요일 보기" arrow>
-                            <ButtonBase>
-                              <Typography className={styles.day}>
-                                {days[today]}요일 :
-                              </Typography>
-                              <Box>
-                                {restaurant.openingHours[days[today]]
-                                  .split("\n")
-                                  .map((line, index) => (
-                                    <Typography
+                          <>
+                            <Tooltip title="전체 요일 보기" arrow>
+                              <ButtonBase onClick={handleClick}>
+                                <Typography className={styles.day}>
+                                  {days[today]}요일 :
+                                </Typography>
+                                <Box>
+                                  {restaurant.openingHours[days[today]]
+                                    .split("\n")
+                                    .map((line, index) => (
+                                      <Typography
+                                        key={index}
+                                        sx={{ textAlign: "left" }}
+                                      >
+                                        {line}
+                                        <br />
+                                      </Typography>
+                                    ))}
+                                </Box>
+                              </ButtonBase>
+                            </Tooltip>
+                            <Popover
+                              open={open}
+                              anchorEl={anchorEl}
+                              onClose={handleClose}
+                              anchorOrigin={{
+                                vertical: "bottom",
+                                horizontal: "left",
+                              }}
+                            >
+                              <Typography className={styles.popHoursContainer}>
+                                {days
+                                  .filter((day) => restaurant.openingHours[day])
+                                  .map((day, index) => (
+                                    <Box
                                       key={index}
-                                      sx={{ textAlign: "left" }}
+                                      className={styles.popHours}
                                     >
-                                      {line}
-                                      <br />
-                                    </Typography>
+                                      <Typography className={styles.day}>
+                                        {day}요일 :
+                                      </Typography>
+                                      <Box>
+                                        {restaurant.openingHours[days[today]]
+                                          .split("\n")
+                                          .map((line, index) => (
+                                            <Typography
+                                              key={index}
+                                              sx={{ textAlign: "left" }}
+                                            >
+                                              {line}
+                                              <br />
+                                            </Typography>
+                                          ))}
+                                      </Box>
+                                    </Box>
                                   ))}
-                              </Box>
-                            </ButtonBase>
-                          </Tooltip>
+                              </Typography>
+                            </Popover>
+                          </>
                         )}
                       </Box>
                     </Box>

@@ -33,6 +33,8 @@ function List({ searchText, sortBy, restaurants }) {
     } else if (sortBy === "name")
       return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
     else {
+      if (a.reviewCount === b.reviewCount && getStarAvg(a) === getStarAvg(b))
+        return b.likes - a.likes;
       if (getStarAvg(a) === getStarAvg(b)) return b.reviewCount - a.reviewCount;
       return getStarAvg(b) - getStarAvg(a);
     }
