@@ -5,8 +5,7 @@ import database from "../service/firebase";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Like from "../components/Like";
-import AddReview from "../components/AddReview";
-import ReviewList from "../components/ReviewList";
+import Review from "../components/Review";
 import Map from "../components/Map";
 import {
   Box,
@@ -282,10 +281,7 @@ function Detail({ auth }) {
                 </Paper>
               </Grid>
               <Grid item xs={6}>
-                <Paper className={styles.section}>
-                  <AddReview restaurant={restaurant} />
-                </Paper>
-                <ReviewList restaurant={restaurant} />
+                <Review restaurant={restaurant} />
               </Grid>
             </Grid>
             <Typography className={styles.updateDate}>
