@@ -16,7 +16,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     fontSize: 16,
     color: "text.primary",
     padding: "10px 26px 10px 17px",
-    fontFamily: ["EliceDigitalBaeum", "sans-serif"].join(","),
+    fontFamily: ["Elice Digital Baeum", "sans-serif"].join(","),
     transition: theme.transitions.create([
       "border-radius",
       "border-color",
@@ -69,21 +69,23 @@ function Home({ auth }) {
                   value={searchText}
                   autoComplete="off"
                   name="search"
-                  placeholder="식당,음식,분류,지역 검색"
+                  placeholder="식당, 음식, 카테고리, 지역 검색"
                 />
               </Box>
-              <Select
-                className={styles.select}
-                value={sortBy}
-                label="정렬"
-                onChange={(e) => setSortBy(e.target.value)}
-                input={<BootstrapInput />}
-              >
-                <MenuItem value={"starAvg"}>별점순</MenuItem>
-                <MenuItem value={"likes"}>좋아요순</MenuItem>
-                <MenuItem value={"reviewCount"}>리뷰개수순</MenuItem>
-                <MenuItem value={"name"}>식당이름순</MenuItem>
-              </Select>
+              <Box className={styles.selectContainer}>
+                <Select
+                  className={styles.select}
+                  value={sortBy}
+                  label="정렬"
+                  onChange={(e) => setSortBy(e.target.value)}
+                  input={<BootstrapInput />}
+                >
+                  <MenuItem value={"starAvg"}>별점순</MenuItem>
+                  <MenuItem value={"likes"}>좋아요순</MenuItem>
+                  <MenuItem value={"reviewCount"}>리뷰개수순</MenuItem>
+                  <MenuItem value={"name"}>식당이름순</MenuItem>
+                </Select>
+              </Box>
             </Box>
             <List
               searchText={searchText}
