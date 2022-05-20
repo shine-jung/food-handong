@@ -1,40 +1,22 @@
 @font-face {
-  font-family: "NanumBarunGothic";
-  font-weight: 300;
-  src: url("./styles/fonts/NanumBarunGothicUltraLight.ttf");
-}
-
-@font-face {
-  font-family: "NanumBarunGothic";
-  font-weight: 400;
-  src: url("./styles/fonts/NanumBarunGothicLight.ttf");
-}
-
-@font-face {
-  font-family: "NanumBarunGothic";
-  font-weight: normal;
-  src: url("./styles/fonts/NanumBarunGothic.ttf");
-}
-
-@font-face {
-  font-family: "NanumBarunGothic";
-  font-weight: bold;
-  src: url("./styles/fonts/NanumBarunGothicBold.ttf");
-}
-
-@font-face {
   font-family: "EliceDigitalBaeum";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_elice@1.0/EliceDigitalBaeum.woff2")
+    format("woff2");
   font-weight: normal;
-  src: url("./styles/fonts/EliceDigitalBaeum_Regular.ttf");
+  font-style: normal;
 }
 
 @font-face {
-  font-family: "EliceDigitalBaeum";
-  font-weight: bold;
-  src: url("./styles/fonts/EliceDigitalBaeum_Bold.ttf");
+  font-family: "SpoqaHanSansNeo";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
