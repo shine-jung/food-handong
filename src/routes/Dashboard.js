@@ -27,15 +27,16 @@ function Dashboard({ auth }) {
     auth.onAuthChange((user) => {
       if (user) {
         setIsLogin(true);
+        onValue(restaurantsRef, (snapshot) => {
+          const datas = snapshot.val();
+          setRestaurantsObj(datas);
+          setLoading(false);
+        });
+        getReviewList();
       } else {
         setIsLogin(false);
         navigate({ pathname: "/" });
       }
-      onValue(restaurantsRef, (snapshot) => {
-        const datas = snapshot.val();
-        setRestaurantsObj(datas);
-        setLoading(false);
-      });
     });
     async function getReviewList() {
       const reviewSnapshot = await getDocs(reviewsCol);
@@ -46,7 +47,6 @@ function Dashboard({ auth }) {
         }))
       );
     }
-    getReviewList();
   }, []);
   // https://gofnrk.tistory.com/117
   function displayedAt(uploadTime) {
