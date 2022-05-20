@@ -165,7 +165,10 @@ function Dashboard({ auth }) {
                           className={styles.restaurantLink}
                           to={`/restaurant/${review.restaurantId}`}
                         >
-                          <Typography className={styles.restaurantName}>
+                          <Typography
+                            className={styles.restaurantName}
+                            color="secondary"
+                          >
                             {restaurantsObj[review.restaurantId].name} 보러 가기
                           </Typography>
                         </Link>

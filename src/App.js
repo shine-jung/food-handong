@@ -37,7 +37,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "'EliceDigitalBaeum', sans-serif",
+    fontFamily: "'Elice Digital Baeum', sans-serif",
     normal: {
       fontFamily: "'SpoqaHanSansNeo', sans-serif",
       color: "rgb(55 65 81)",

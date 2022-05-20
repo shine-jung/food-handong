@@ -1,10 +1,4 @@
-@font-face {
-  font-family: "EliceDigitalBaeum";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_elice@1.0/EliceDigitalBaeum.woff2")
-    format("woff2");
-  font-weight: normal;
-  font-style: normal;
-}
+@import url("https://font.elice.io/EliceDigitalBaeum.css");
 
 @font-face {
   font-family: "SpoqaHanSansNeo";

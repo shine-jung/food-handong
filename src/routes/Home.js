@@ -16,7 +16,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     fontSize: 16,
     color: "text.primary",
     padding: "10px 26px 10px 17px",
-    fontFamily: ["EliceDigitalBaeum", "sans-serif"].join(","),
+    fontFamily: ["Elice Digital Baeum", "sans-serif"].join(","),
     transition: theme.transitions.create([
       "border-radius",
       "border-color",
