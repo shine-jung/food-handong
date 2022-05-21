@@ -4,7 +4,8 @@ import { Grid } from "@mui/material";
 import Restaurant from "./Restaurant";
 import styles from "./List.module.css";
 
-function List({ searchText, sortBy, restaurants, recommendId, recommendObj }) {
+function List({ searchText, sortBy, restaurants, recommendId }) {
+  const recommendObj = restaurants[recommendId.toString()];
   const restaurantList = Object.values(restaurants);
   const filteredList = restaurantList.filter((restaurant) => {
     if (searchText === "") {
@@ -77,7 +78,6 @@ List.propTypes = {
   sortBy: PropTypes.string.isRequired,
   restaurants: PropTypes.object.isRequired,
   recommendId: PropTypes.number.isRequired,
-  recommendObj: PropTypes.object.isRequired,
 };
 
 export default List;
