@@ -58,14 +58,7 @@ const Map = ({ name, lat, lon, centerLocation }) => {
       map.setBounds(bounds);
     }
     map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-  }, [
-    name,
-    lat,
-    lon,
-    centerLocation,
-    userPosition.latitude,
-    userPosition.longitude,
-  ]);
+  }, [centerLocation, userPosition.latitude, userPosition.longitude]);
   return (
     <div
       id="map"

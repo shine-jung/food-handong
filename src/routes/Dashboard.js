@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 import { Box, Paper, Grid, Typography, Rating } from "@mui/material";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import NorthEastIcon from "@mui/icons-material/NorthEast";
 import styles from "./Dashboard.module.css";
 import Restaurant from "../components/Restaurant";
 
@@ -170,6 +171,7 @@ function Dashboard({ auth }) {
                             color="secondary"
                           >
                             {restaurantsObj[review.restaurantId].name} 보러 가기
+                            <NorthEastIcon />
                           </Typography>
                         </Link>
                       </Paper>

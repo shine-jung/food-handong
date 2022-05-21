@@ -18,7 +18,12 @@ import {
   Tooltip,
   Popover,
 } from "@mui/material";
-import { faStar, faHeart, faComment } from "@fortawesome/free-solid-svg-icons";
+import {
+  faStar,
+  faHeart,
+  faComment,
+  faCaretDown,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./Detail.module.css";
 
@@ -157,6 +162,12 @@ function Detail({ auth }) {
                                       </Typography>
                                     ))}
                                 </Box>
+                                <Typography
+                                  className={styles.caretDownIcon}
+                                  color="primary"
+                                >
+                                  <FontAwesomeIcon icon={faCaretDown} />
+                                </Typography>
                               </ButtonBase>
                             </Tooltip>
                             <Popover
