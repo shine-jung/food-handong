@@ -37,7 +37,9 @@ function Home({ auth }) {
   const [isLogin, setIsLogin] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [sortBy, setSortBy] = useState("starAvg");
-  const [restaurants, setRestaurants] = useState([]);
+  const [recommendId, setRecommendId] = useState(959388742);
+  const [recommendObj, setRecommendObj] = useState({});
+  const [restaurants, setRestaurants] = useState({});
   const restaurantsRef = ref(database, "restaurants");
   const onLogout = useCallback(() => {
     auth.logout();
@@ -47,8 +49,9 @@ function Home({ auth }) {
       user ? setIsLogin(true) : setIsLogin(false);
     });
     onValue(restaurantsRef, (snapshot) => {
-      const datas = Object.values(snapshot.val());
+      const datas = snapshot.val();
       setRestaurants(datas);
+      setRecommendObj(datas[recommendId.toString()]);
       setLoading(false);
     });
   }, []);
@@ -91,6 +94,8 @@ function Home({ auth }) {
               searchText={searchText}
               sortBy={sortBy}
               restaurants={restaurants}
+              recommendId={recommendId}
+              recommendObj={recommendObj}
             />
           </Box>
           <Footer />

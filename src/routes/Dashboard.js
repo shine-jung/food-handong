@@ -170,7 +170,7 @@ function Dashboard({ auth }) {
                             className={styles.restaurantName}
                             color="secondary"
                           >
-                            {restaurantsObj[review.restaurantId].name} 보러 가기
+                            {restaurantsObj[review.restaurantId].name}
                             <NorthEastIcon />
                           </Typography>
                         </Link>

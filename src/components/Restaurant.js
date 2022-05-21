@@ -1,10 +1,15 @@
 import PropTypes from "prop-types";
 import { Box, Paper, Typography } from "@mui/material";
-import { faStar, faHeart, faComment } from "@fortawesome/free-solid-svg-icons";
+import {
+  faStar,
+  faHeart,
+  faComment,
+  faLightbulb,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./Restaurant.module.css";
 
-function Restaurant({ restaurant }) {
+function Restaurant({ restaurant, recommend = false }) {
   const starAvg = restaurant.starCount
     ? restaurant.starSum / restaurant.starCount
     : 0;
@@ -40,9 +45,26 @@ function Restaurant({ restaurant }) {
               )}
             </Typography>
           </Box>
-          <Typography variant="subtitle2" component="div" gutterBottom>
-            {restaurant.category}
-          </Typography>
+          <Box>
+            {recommend && (
+              <Typography variant="subtitle2" color="secondary">
+                <Box className={styles.recommend}>
+                  <FontAwesomeIcon
+                    className={styles.recommendIcon}
+                    icon={faLightbulb}
+                  />
+                  추천
+                </Box>
+              </Typography>
+            )}
+            <Typography
+              className={styles.category}
+              variant="subtitle2"
+              gutterBottom
+            >
+              {restaurant.category}
+            </Typography>
+          </Box>
         </Box>
         <Typography className={styles.statusContainer} color="text.secondary">
           <Box className={styles.status}>
