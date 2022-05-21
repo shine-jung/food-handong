@@ -12,6 +12,7 @@ import database, { firebaseAuth, firestore } from "../service/firebase";
 import {
   Box,
   Button,
+  ButtonBase,
   Paper,
   Rating,
   Typography,
@@ -45,6 +46,7 @@ function Review({ restaurant }) {
   const reviewedUser = restaurant.reviewedUser;
   const starCount = restaurant.starCount;
   const starSum = restaurant.starSum;
+  const [sortBy, setSortBy] = useState(true);
   useEffect(() => {
     getReviewList();
   }, []);
@@ -160,11 +162,38 @@ function Review({ restaurant }) {
           </Button>
         </Box>
       </Paper>
+      <Box className={styles.sortContainer}>
+        <Typography
+          className={styles.sortText}
+          variant="normal"
+          color="text.secondary"
+        >
+          sort by:
+        </Typography>
+        <ButtonBase className={styles.sortBy} onClick={() => setSortBy(true)}>
+          <Typography
+            variant="normal"
+            color={sortBy ? "secondary" : "rgb(156 163 175)"}
+          >
+            최신순
+          </Typography>
+        </ButtonBase>
+        <ButtonBase className={styles.sortBy} onClick={() => setSortBy(false)}>
+          <Typography
+            variant="normal"
+            color={sortBy ? "rgb(156 163 175)" : "secondary"}
+          >
+            오래된 순
+          </Typography>
+        </ButtonBase>
+      </Box>
       {reviewList
         .filter(
           (review) => review.visible && review.restaurantId === restaurant.id
         )
-        .sort((a, b) => b.uploadTime - a.uploadTime)
+        .sort((a, b) =>
+          sortBy ? b.uploadTime - a.uploadTime : a.uploadTime - b.uploadTime
+        )
         .map((review) => (
           <Box key={review.id} className={styles.container}>
             <img
