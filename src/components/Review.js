@@ -170,7 +170,7 @@ function Review({ restaurant }) {
         >
           sort by:
         </Typography>
-        <ButtonBase className={styles.sortBy} onClick={() => setSortBy(true)}>
+        <ButtonBase className={styles.sortText} onClick={() => setSortBy(true)}>
           <Typography
             variant="normal"
             color={sortBy ? "secondary" : "rgb(156 163 175)"}
@@ -178,7 +178,10 @@ function Review({ restaurant }) {
             최신순
           </Typography>
         </ButtonBase>
-        <ButtonBase className={styles.sortBy} onClick={() => setSortBy(false)}>
+        <ButtonBase
+          className={styles.sortText}
+          onClick={() => setSortBy(false)}
+        >
           <Typography
             variant="normal"
             color={sortBy ? "rgb(156 163 175)" : "secondary"}

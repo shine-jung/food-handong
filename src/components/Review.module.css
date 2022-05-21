@@ -36,12 +36,7 @@
 
 .sortText {
   font-weight: bold;
-  margin-right: 5px;
-}
-
-.sortBy {
-  font-weight: bold;
-  margin-left: 15px;
+  margin: 0 8px;
 }
 
 .container {
