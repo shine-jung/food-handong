@@ -39,7 +39,7 @@ const theme = createTheme({
   typography: {
     fontFamily: "'Elice Digital Baeum', sans-serif",
     normal: {
-      fontFamily: "'SpoqaHanSansNeo', sans-serif",
+      fontFamily: "'Spoqa Han Sans Neo', sans-serif",
       color: "rgb(55 65 81)",
       fontSize: "15px",
     },
