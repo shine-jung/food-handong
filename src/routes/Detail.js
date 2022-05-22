@@ -125,15 +125,18 @@ function Detail({ auth }) {
                       <Typography className={styles.infoText}>
                         {restaurant.location}
                       </Typography>
-                      <Link href={`tel:${restaurant.contact}`} underline="none">
-                        <Typography className={styles.infoText}>
+                      <Typography className={styles.infoText}>
+                        <Link
+                          href={`tel:${restaurant.contact}`}
+                          underline="none"
+                        >
                           <FontAwesomeIcon
                             className={styles.callIcon}
                             icon={faPhone}
                           />
                           {restaurant.contact}
-                        </Typography>
-                      </Link>
+                        </Link>
+                      </Typography>
                       <Box className={styles.hours}>
                         {restaurant.openingHours === "정보가 없어요" ? (
                           <Typography>영업시간 정보가 없어요 😭</Typography>
