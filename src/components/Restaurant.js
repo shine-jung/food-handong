@@ -25,23 +25,27 @@ function Restaurant({ restaurant, recommend = false }) {
       <Box className={styles.infoContainer}>
         <Box className={styles.textContainer}>
           <Box className={styles.info}>
-            <Typography variant="subtitle1" component="div" gutterBottom>
+            <Typography
+              className={styles.infoText}
+              variant="subtitle1"
+              component="div"
+              gutterBottom
+            >
               {restaurant.name}
             </Typography>
             <Typography variant="body2" gutterBottom>
               {restaurant.dong}
             </Typography>
-            <Typography
-              className={styles.menu}
-              variant="body2"
-              color="text.secondary"
-              gutterBottom
-            >
+            <Typography variant="body2" color="text.secondary" gutterBottom>
               {restaurant.menus[0] && (
-                <Box className={styles.menu}>{restaurant.menus[0].title}</Box>
+                <Box className={styles.infoText}>
+                  {restaurant.menus[0].title}
+                </Box>
               )}
               {restaurant.menus[1] && (
-                <Box className={styles.menu}>{restaurant.menus[1].title}</Box>
+                <Box className={styles.infoText}>
+                  {restaurant.menus[1].title}
+                </Box>
               )}
             </Typography>
           </Box>
