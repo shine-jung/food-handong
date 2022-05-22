@@ -64,7 +64,10 @@ function List({ searchText, sortBy, restaurants, recommendId }) {
               className={styles.restaurant}
               to={`/restaurant/${restaurant.id}`}
             >
-              <Restaurant restaurant={restaurant} />
+              <Restaurant
+                restaurant={restaurant}
+                recommend={restaurant.id === recommendId}
+              />
             </Link>
           </Grid>
         ))}
