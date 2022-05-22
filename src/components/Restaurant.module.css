@@ -51,7 +51,11 @@
   text-align: start;
 }
 
-@media screen and (min-width: 390px) {
+.info {
+  width: 125px;
+}
+
+@media screen and (min-width: 375px) {
   .textContainer {
     display: flex;
   }
@@ -63,8 +67,10 @@
   }
 }
 
-.info {
-  width: 140px;
+@media screen and (min-width: 390px) {
+  .info {
+    width: 140px;
+  }
 }
 
 .menu {
