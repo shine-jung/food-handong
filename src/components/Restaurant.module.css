@@ -51,7 +51,7 @@
   text-align: start;
 }
 
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 390px) {
   .textContainer {
     display: flex;
   }
@@ -64,7 +64,7 @@
 }
 
 .info {
-  width: 146px;
+  width: 140px;
 }
 
 .menu {
