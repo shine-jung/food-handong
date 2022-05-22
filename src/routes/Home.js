@@ -50,7 +50,7 @@ function Home({ auth }) {
     });
     onValue(recommendRef, (snapshot) => {
       const data = snapshot.val();
-      setRecommendId(data);
+      setRecommendId(data.recommendId);
     });
     onValue(restaurantsRef, (snapshot) => {
       const datas = snapshot.val();
