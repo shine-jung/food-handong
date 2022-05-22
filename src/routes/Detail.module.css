@@ -59,6 +59,11 @@
   margin-bottom: 2px;
 }
 
+.callIcon {
+  color: #003366;
+  margin-right: 8px;
+}
+
 .hours {
   display: flex;
   margin-left: 4px;
@@ -138,22 +143,22 @@
 }
 
 .status {
-  margin-right: 10px;
+  margin-right: 12px;
 }
 
 .starIcon {
   color: #ffcc33;
-  margin-right: 5px;
+  margin-right: 6px;
 }
 
 .heartIcon {
   color: #ff6666;
-  margin-right: 5px;
+  margin-right: 6px;
 }
 
 .commentIcon {
   color: #33cccc;
-  margin-right: 5px;
+  margin-right: 6px;
 }
 
 .updateDate {

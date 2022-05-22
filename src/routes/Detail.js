@@ -17,11 +17,13 @@ import {
   ButtonBase,
   Tooltip,
   Popover,
+  Link,
 } from "@mui/material";
 import {
   faStar,
   faHeart,
   faComment,
+  faPhone,
   faCaretDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -123,6 +125,15 @@ function Detail({ auth }) {
                       <Typography className={styles.infoText}>
                         {restaurant.location}
                       </Typography>
+                      <Link href={`tel:${restaurant.contact}`} underline="none">
+                        <Typography className={styles.infoText}>
+                          <FontAwesomeIcon
+                            className={styles.callIcon}
+                            icon={faPhone}
+                          />
+                          {restaurant.contact}
+                        </Typography>
+                      </Link>
                       <Box className={styles.hours}>
                         {restaurant.openingHours === "정보가 없어요" ? (
                           <Typography>영업시간 정보가 없어요 😭</Typography>
