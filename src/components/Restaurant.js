@@ -50,6 +50,9 @@ function Restaurant({ restaurant, recommend = false }) {
             </Typography>
           </Box>
           <Box>
+            <Typography className={styles.category} variant="subtitle2">
+              {restaurant.category}
+            </Typography>
             {recommend && (
               <Typography variant="subtitle2" color="secondary">
                 <Box className={styles.recommend}>
@@ -61,13 +64,6 @@ function Restaurant({ restaurant, recommend = false }) {
                 </Box>
               </Typography>
             )}
-            <Typography
-              className={styles.category}
-              variant="subtitle2"
-              gutterBottom
-            >
-              {restaurant.category}
-            </Typography>
           </Box>
         </Box>
         <Typography className={styles.statusContainer} color="text.secondary">
