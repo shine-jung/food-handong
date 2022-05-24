@@ -205,7 +205,7 @@ function Detail({ auth }) {
                                         {day}요일 :
                                       </Typography>
                                       <Box>
-                                        {restaurant.openingHours[days[today]]
+                                        {restaurant.openingHours[day]
                                           .split("\n")
                                           .map((line, index) => (
                                             <Typography
@@ -226,25 +226,6 @@ function Detail({ auth }) {
                       </Box>
                     </Box>
                   </Box>
-                  {/* <Box>
-                      {days
-                      .filter((day) => restaurant.openingHours[day])
-                      .map((day, index) => (
-                        <Box key={index}>
-                          {day} :
-                          <Box>
-                            {restaurant.openingHours[day]
-                              .split("\n")
-                              .map((line, index) => (
-                                <Box key={index}>
-                                  {line}
-                                  <br />
-                                </Box>
-                              ))}
-                          </Box>
-                        </Box>
-                      ))}
-                    </Box> */}
                 </Paper>
                 <Paper className={styles.section}>
                   <Typography className={styles.title} variant="h6">
