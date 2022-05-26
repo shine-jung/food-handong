@@ -79,9 +79,7 @@ function Detail({ auth }) {
               <Grid item xs={6}>
                 <Paper className={styles.section}>
                   <Box className={styles.infoHeader}>
-                    <Typography variant="h6">
-                      {restaurant.officialName}
-                    </Typography>
+                    <Typography variant="h6">{restaurant.name}</Typography>
                     <Box>
                       <Like restaurant={restaurant} />
                       <KakaoShare restaurant={restaurant} />

@@ -21,7 +21,7 @@ function KakaoShare({ restaurant }) {
     window.Kakao.Link.sendDefault({
       objectType: "location",
       address: restaurant.location,
-      addressTitle: restaurant.officialName,
+      addressTitle: restaurant.name,
       content: {
         title: restaurant.name,
         description: `#${restaurant.dong} #${restaurant.category} #${restaurant.menus[0].title}`,
