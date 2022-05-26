@@ -1,3 +1,7 @@
+.likeBtnContainer {
+  margin-right: 1rem;
+}
+
 .likeBtn {
   font-size: 2rem;
   color: #ff6666;

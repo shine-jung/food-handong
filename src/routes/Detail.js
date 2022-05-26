@@ -5,6 +5,7 @@ import database from "../service/firebase";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Like from "../components/Like";
+import KakaoShare from "../components/KakaoShare";
 import Review from "../components/Review";
 import Map from "../components/Map";
 import {
@@ -81,7 +82,10 @@ function Detail({ auth }) {
                     <Typography variant="h6">
                       {restaurant.officialName}
                     </Typography>
-                    <Like restaurant={restaurant} />
+                    <Box>
+                      <Like restaurant={restaurant} />
+                      <KakaoShare restaurant={restaurant} />
+                    </Box>
                   </Box>
                   <Box className={styles.info}>
                     <img

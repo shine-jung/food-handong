@@ -44,7 +44,12 @@ function Like({ restaurant }) {
   }
   return (
     <>
-      <Tooltip title={isLiked ? "좋아요 취소" : "좋아요"} placement="top" arrow>
+      <Tooltip
+        className={styles.likeBtnContainer}
+        title={isLiked ? "좋아요 취소" : "좋아요"}
+        placement="top"
+        arrow
+      >
         <ButtonBase onClick={likeBtnClick} disableRipple>
           <FontAwesomeIcon
             className={styles.likeBtn}
