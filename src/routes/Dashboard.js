@@ -19,7 +19,7 @@ function Dashboard({ auth }) {
   const [isLogin, setIsLogin] = useState(false);
   const [reviewList, setReviewList] = useState([]);
   const reviewsCol = collection(firestore, "reviews");
-  const [restaurantsObj, setRestaurantsObj] = useState([]);
+  const [restaurantsObj, setRestaurantsObj] = useState({});
   const restaurantsRef = ref(database, "restaurants");
   const onLogout = useCallback(() => {
     auth.logout();
@@ -120,52 +120,53 @@ function Dashboard({ auth }) {
                   .filter((review) => review.visible && review.uid === user.uid)
                   .sort((a, b) => b.uploadTime - a.uploadTime)
                   .map((review) => (
-                    <Box key={review.id} className={styles.reviewcontainer}>
-                      <img
-                        className={styles.profileImg}
-                        src={review.photoURL}
-                        alt={review.displayName}
-                      />
-                      <Paper className={styles.content}>
-                        <Box className={styles.reviewHeader}>
-                          <Typography
-                            className={styles.reviewTitle}
-                            variant="normal"
-                          >
-                            {review.displayName}
-                            <Box className={styles.starInfo}>
-                              <Rating
-                                className={styles.stars}
-                                value={review.star}
-                                readOnly
-                                icon={
-                                  <FontAwesomeIcon
-                                    className={styles.starIcon}
-                                    icon={faStar}
-                                  />
-                                }
-                                emptyIcon={
-                                  <FontAwesomeIcon
-                                    className={styles.starIcon}
-                                    style={{ opacity: 0.55 }}
-                                    icon={faStar}
-                                  />
-                                }
-                              />
-                              <Typography>{review.star}</Typography>
-                            </Box>
+                    <Link
+                      key={review.id}
+                      className={styles.restaurantLink}
+                      to={`/restaurant/${review.restaurantId}`}
+                    >
+                      <Box className={styles.reviewcontainer}>
+                        <img
+                          className={styles.profileImg}
+                          src={review.photoURL}
+                          alt={review.displayName}
+                        />
+                        <Paper className={styles.content}>
+                          <Box className={styles.reviewHeader}>
+                            <Typography
+                              className={styles.reviewTitle}
+                              variant="normal"
+                            >
+                              {review.displayName}
+                              <Box className={styles.starInfo}>
+                                <Rating
+                                  className={styles.stars}
+                                  value={review.star}
+                                  readOnly
+                                  icon={
+                                    <FontAwesomeIcon
+                                      className={styles.starIcon}
+                                      icon={faStar}
+                                    />
+                                  }
+                                  emptyIcon={
+                                    <FontAwesomeIcon
+                                      className={styles.starIcon}
+                                      style={{ opacity: 0.55 }}
+                                      icon={faStar}
+                                    />
+                                  }
+                                />
+                                <Typography>{review.star}</Typography>
+                              </Box>
+                            </Typography>
+                            <Typography variant="normal" color="text.secondary">
+                              {displayedAt(review.uploadTime.toDate())}
+                            </Typography>
+                          </Box>
+                          <Typography className={styles.review} gutterBottom>
+                            {review.review}
                           </Typography>
-                          <Typography variant="normal" color="text.secondary">
-                            {displayedAt(review.uploadTime.toDate())}
-                          </Typography>
-                        </Box>
-                        <Typography className={styles.review} gutterBottom>
-                          {review.review}
-                        </Typography>
-                        <Link
-                          className={styles.restaurantLink}
-                          to={`/restaurant/${review.restaurantId}`}
-                        >
                           <Typography
                             className={styles.restaurantName}
                             color="secondary"
@@ -173,9 +174,9 @@ function Dashboard({ auth }) {
                             {restaurantsObj[review.restaurantId].name}
                             <NorthEastIcon />
                           </Typography>
-                        </Link>
-                      </Paper>
-                    </Box>
+                        </Paper>
+                      </Box>
+                    </Link>
                   ))}
               </Grid>
             </Grid>

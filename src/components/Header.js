@@ -48,7 +48,7 @@ function Header({ isLogin, onLogout }) {
             variant="h6"
             component="div"
             color="text.logo"
-            sx={{ visibility: { xs: "hidden", md: "visible" } }}
+            sx={{ visibility: { xs: "hidden", sm: "visible" } }}
           >
             한동맛나
           </Typography>

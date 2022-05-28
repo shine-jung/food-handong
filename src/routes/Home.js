@@ -3,6 +3,7 @@ import { ref, onValue } from "firebase/database";
 import database from "../service/firebase";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Sidebar from "../components/Sidebar";
 import List from "../components/List";
 import { Box, InputBase, Select, MenuItem, styled } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
@@ -36,6 +37,7 @@ function Home({ auth }) {
   const [loading, setLoading] = useState(true);
   const [isLogin, setIsLogin] = useState(false);
   const [searchText, setSearchText] = useState("");
+  const [categoryText, setcategoryText] = useState("");
   const [sortBy, setSortBy] = useState("starAvg");
   const [recommendId, setRecommendId] = useState();
   const [restaurants, setRestaurants] = useState();
@@ -66,39 +68,47 @@ function Home({ auth }) {
       ) : (
         <Box className={styles.root}>
           <Box className={styles.container}>
-            <Box className={styles.header}>
-              <Box className={styles.searchBar}>
-                <SearchIcon className={styles.searchIcon} />
-                <InputBase
-                  className={styles.searchInput}
-                  onChange={(e) => setSearchText(e.target.value)}
-                  value={searchText}
-                  autoComplete="off"
-                  name="search"
-                  placeholder="식당, 음식, 카테고리, 지역 검색"
-                />
-              </Box>
-              <Box className={styles.selectContainer}>
-                <Select
-                  className={styles.select}
-                  value={sortBy}
-                  label="정렬"
-                  onChange={(e) => setSortBy(e.target.value)}
-                  input={<BootstrapInput />}
-                >
-                  <MenuItem value={"starAvg"}>별점순</MenuItem>
-                  <MenuItem value={"likes"}>좋아요순</MenuItem>
-                  <MenuItem value={"reviewCount"}>리뷰개수순</MenuItem>
-                  <MenuItem value={"name"}>식당이름순</MenuItem>
-                </Select>
-              </Box>
-            </Box>
-            <List
-              searchText={searchText}
-              sortBy={sortBy}
+            <Sidebar
               restaurants={restaurants}
-              recommendId={recommendId}
+              categoryText={categoryText}
+              setcategoryText={setcategoryText}
             />
+            <Box className={styles.headerContainer}>
+              <Box className={styles.header}>
+                <Box className={styles.searchBar}>
+                  <SearchIcon className={styles.searchIcon} />
+                  <InputBase
+                    className={styles.searchInput}
+                    onChange={(e) => setSearchText(e.target.value)}
+                    value={searchText}
+                    autoComplete="off"
+                    name="search"
+                    placeholder="식당, 음식, 카테고리, 지역 검색"
+                  />
+                </Box>
+                <Box className={styles.selectContainer}>
+                  <Select
+                    className={styles.select}
+                    value={sortBy}
+                    label="정렬"
+                    onChange={(e) => setSortBy(e.target.value)}
+                    input={<BootstrapInput />}
+                  >
+                    <MenuItem value={"starAvg"}>별점순</MenuItem>
+                    <MenuItem value={"likes"}>좋아요순</MenuItem>
+                    <MenuItem value={"reviewCount"}>리뷰개수순</MenuItem>
+                    <MenuItem value={"name"}>식당이름순</MenuItem>
+                  </Select>
+                </Box>
+              </Box>
+              <List
+                searchText={searchText}
+                categoryText={categoryText}
+                sortBy={sortBy}
+                restaurants={restaurants}
+                recommendId={recommendId}
+              />
+            </Box>
           </Box>
           <Footer />
         </Box>

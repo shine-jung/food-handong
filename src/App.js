@@ -16,9 +16,9 @@ const theme = createTheme({
     values: {
       xs: 0,
       sm: 600,
-      md: 820,
-      lg: 1250,
-      xl: 1920,
+      md: 1000,
+      lg: 1525,
+      xl: 1946,
     },
   },
   palette: {
@@ -40,7 +40,7 @@ const theme = createTheme({
     fontFamily: "'Elice Digital Baeum', sans-serif",
     normal: {
       fontFamily: "'Spoqa Han Sans Neo', sans-serif",
-      color: "rgb(55 65 81)",
+      color: "#333333",
       fontSize: "15px",
     },
   },
