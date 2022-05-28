@@ -13,6 +13,8 @@
 
 @media screen and (min-width: 820px) {
   .container {
+    position: sticky;
+    top: 104px;
     display: block;
     width: 200px;
     min-width: 200px;
