@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { ref, onValue } from "firebase/database";
-import database from "../service/firebase";
+import { collection, getDocs } from "firebase/firestore/lite";
+import database, { firestore } from "../service/firebase";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Sidebar from "../components/Sidebar";
@@ -43,6 +44,8 @@ function Home({ auth }) {
   const [restaurants, setRestaurants] = useState();
   const recommendRef = ref(database, "recommend");
   const restaurantsRef = ref(database, "restaurants");
+  const [reviewList, setReviewList] = useState([]);
+  const reviewsCol = collection(firestore, "reviews");
   const onLogout = useCallback(() => {
     auth.logout();
   }, [auth]);
@@ -50,6 +53,7 @@ function Home({ auth }) {
     auth.onAuthChange((user) => {
       user ? setIsLogin(true) : setIsLogin(false);
     });
+    getReviewList();
     onValue(recommendRef, (snapshot) => {
       const data = snapshot.val();
       setRecommendId(data.recommendId);
@@ -59,6 +63,15 @@ function Home({ auth }) {
       setRestaurants(datas);
       setLoading(false);
     });
+    async function getReviewList() {
+      const reviewSnapshot = await getDocs(reviewsCol);
+      setReviewList(
+        reviewSnapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }))
+      );
+    }
   }, []);
   return (
     <>
@@ -70,6 +83,7 @@ function Home({ auth }) {
           <Box className={styles.container}>
             <Sidebar
               restaurants={restaurants}
+              reviewList={reviewList}
               categoryText={categoryText}
               setcategoryText={setcategoryText}
             />
