@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import database, { firebaseAuth, firestore } from "../service/firebase";
 import { ref, onValue } from "firebase/database";
-import { collection, getDocs } from "firebase/firestore/lite";
+import { collection, getDocs, query, where } from "firebase/firestore/lite";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Box, Paper, Grid, Typography, Rating } from "@mui/material";
@@ -28,19 +28,20 @@ function Dashboard({ auth }) {
     auth.onAuthChange((user) => {
       if (user) {
         setIsLogin(true);
+        const q = query(reviewsCol, where("uid", "==", user.uid));
         onValue(restaurantsRef, (snapshot) => {
           const datas = snapshot.val();
           setRestaurantsObj(datas);
           setLoading(false);
         });
-        getReviewList();
+        getReviewList(q);
       } else {
         setIsLogin(false);
         navigate({ pathname: "/" });
       }
     });
-    async function getReviewList() {
-      const reviewSnapshot = await getDocs(reviewsCol);
+    async function getReviewList(query) {
+      const reviewSnapshot = await getDocs(query);
       setReviewList(
         reviewSnapshot.docs.map((doc) => ({
           ...doc.data(),
@@ -117,7 +118,6 @@ function Dashboard({ auth }) {
                   내가 쓴 리뷰
                 </Typography>
                 {reviewList
-                  .filter((review) => review.visible && review.uid === user.uid)
                   .sort((a, b) => b.uploadTime - a.uploadTime)
                   .map((review) => (
                     <Link

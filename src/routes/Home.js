@@ -1,6 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 import { ref, onValue } from "firebase/database";
-import { collection, getDocs } from "firebase/firestore/lite";
+import {
+  collection,
+  getDocs,
+  query,
+  orderBy,
+  limit,
+} from "firebase/firestore/lite";
 import database, { firestore } from "../service/firebase";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -46,6 +52,7 @@ function Home({ auth }) {
   const restaurantsRef = ref(database, "restaurants");
   const [reviewList, setReviewList] = useState([]);
   const reviewsCol = collection(firestore, "reviews");
+  const q = query(reviewsCol, orderBy("uploadTime", "desc"), limit(4));
   const onLogout = useCallback(() => {
     auth.logout();
   }, [auth]);
@@ -64,7 +71,7 @@ function Home({ auth }) {
       setLoading(false);
     });
     async function getReviewList() {
-      const reviewSnapshot = await getDocs(reviewsCol);
+      const reviewSnapshot = await getDocs(q);
       setReviewList(
         reviewSnapshot.docs.map((doc) => ({
           ...doc.data(),

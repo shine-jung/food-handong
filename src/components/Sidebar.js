@@ -43,23 +43,19 @@ function Sidebar({ restaurants, reviewList, categoryText, setcategoryText }) {
         ))}
       </MenuList>
       <Typography className={styles.title}>최근 리뷰</Typography>
-      {reviewList
-        .filter((review) => review.visible)
-        .sort((a, b) => b.uploadTime - a.uploadTime)
-        .slice(0, 4)
-        .map((review) => (
-          <Box key={review.id} className={styles.content}>
-            <Link
-              className={styles.restaurantLink}
-              to={`/restaurant/${review.restaurantId}`}
-            >
-              <Typography className={styles.review}>{review.review}</Typography>
-              <Typography variant="normal">
-                {restaurants[review.restaurantId].name}
-              </Typography>
-            </Link>
-          </Box>
-        ))}
+      {reviewList.map((review) => (
+        <Box key={review.id} className={styles.content}>
+          <Link
+            className={styles.restaurantLink}
+            to={`/restaurant/${review.restaurantId}`}
+          >
+            <Typography className={styles.review}>{review.review}</Typography>
+            <Typography variant="normal">
+              {restaurants[review.restaurantId].name}
+            </Typography>
+          </Link>
+        </Box>
+      ))}
     </Paper>
   );
 }

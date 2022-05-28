@@ -7,6 +7,8 @@ import {
   addDoc,
   getDocs,
   deleteDoc,
+  query,
+  where,
 } from "firebase/firestore/lite";
 import database, { firebaseAuth, firestore } from "../service/firebase";
 import {
@@ -42,6 +44,7 @@ function Review({ restaurant }) {
   const [reviewList, setReviewList] = useState([]);
   const restaurantRef = ref(database, `restaurants/${restaurant.id}`);
   const reviewsCol = collection(firestore, "reviews");
+  const q = query(reviewsCol, where("restaurantId", "==", restaurant.id));
   const reviewCount = restaurant.reviewCount;
   const reviewedUser = restaurant.reviewedUser;
   const starCount = restaurant.starCount;
@@ -96,7 +99,7 @@ function Review({ restaurant }) {
     getReviewList();
   }
   async function getReviewList() {
-    const reviewSnapshot = await getDocs(reviewsCol);
+    const reviewSnapshot = await getDocs(q);
     setReviewList(
       reviewSnapshot.docs.map((doc) => ({
         ...doc.data(),
@@ -191,9 +194,6 @@ function Review({ restaurant }) {
         </ButtonBase>
       </Box>
       {reviewList
-        .filter(
-          (review) => review.visible && review.restaurantId === restaurant.id
-        )
         .sort((a, b) =>
           sortBy ? b.uploadTime - a.uploadTime : a.uploadTime - b.uploadTime
         )
