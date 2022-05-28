@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Grid } from "@mui/material";
 import Restaurant from "./Restaurant";
-import GoogleAdvertise from "./GoogleAdvertise";
 import styles from "./List.module.css";
 
 function List({ searchText, sortBy, restaurants, recommendId }) {
@@ -59,9 +58,6 @@ function List({ searchText, sortBy, restaurants, recommendId }) {
             </Link>
           </Grid>
         )}
-        {/* <Grid item xs={1} md={1} lg={1} xl={1}>
-          <GoogleAdvertise />
-        </Grid> */}
         {sortedList.map((restaurant) => (
           <Grid key={restaurant.id} item xs={1} md={1} lg={1} xl={1}>
             <Link
