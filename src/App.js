@@ -16,7 +16,7 @@ const theme = createTheme({
     values: {
       xs: 0,
       sm: 600,
-      md: 1000,
+      md: 1100,
       lg: 1525,
       xl: 1946,
     },
