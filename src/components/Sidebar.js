@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Box, Paper, Typography, MenuList, MenuItem } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 import styles from "./Sidebar.module.css";
 
 const categoryList = [
@@ -21,27 +21,25 @@ function Sidebar({ restaurants, reviewList, categoryText, setcategoryText }) {
   return (
     <Paper className={styles.container}>
       <Typography className={styles.title}>카테고리</Typography>
-      <MenuList dense>
-        <MenuItem
+      <Typography
+        className={styles.category}
+        onClick={() => setcategoryText("")}
+      >
+        <Box sx={{ color: categoryText === "" ? "#333" : "#777" }}>
+          전체보기 (124)
+        </Box>
+      </Typography>
+      {categoryList.map((category, index) => (
+        <Typography
+          key={category}
           className={styles.category}
-          onClick={() => setcategoryText("")}
+          onClick={() => setcategoryText(category)}
         >
-          <Box sx={{ color: categoryText === "" ? "#333" : "#777" }}>
-            전체보기 (124)
+          <Box sx={{ color: categoryText === category ? "#333" : "#777" }}>
+            {category} ({categoryCount[index]})
           </Box>
-        </MenuItem>
-        {categoryList.map((category, index) => (
-          <MenuItem
-            key={category}
-            className={styles.category}
-            onClick={() => setcategoryText(category)}
-          >
-            <Box sx={{ color: categoryText === category ? "#333" : "#777" }}>
-              {category} ({categoryCount[index]})
-            </Box>
-          </MenuItem>
-        ))}
-      </MenuList>
+        </Typography>
+      ))}
       <Typography className={styles.title}>최근 리뷰</Typography>
       {reviewList.map((review) => (
         <Box key={review.id} className={styles.content}>
@@ -50,7 +48,7 @@ function Sidebar({ restaurants, reviewList, categoryText, setcategoryText }) {
             to={`/restaurant/${review.restaurantId}`}
           >
             <Typography className={styles.review}>{review.review}</Typography>
-            <Typography variant="normal">
+            <Typography className={styles.review} variant="normal">
               {restaurants[review.restaurantId].name}
             </Typography>
           </Link>
