@@ -43,15 +43,19 @@ function Header({ isLogin, onLogout }) {
               />
             </ButtonBase>
           </Tooltip>
-          <Typography
-            className={styles.title}
-            variant="h6"
-            component="div"
-            color="text.logo"
+          <Box
+            className={styles.titleContainer}
             sx={{ visibility: { xs: "hidden", sm: "visible" } }}
           >
-            한동맛나
-          </Typography>
+            <Typography
+              className={styles.title}
+              variant="h6"
+              color="text.logo"
+              onClick={() => navigate({ pathname: "/" })}
+            >
+              한동맛나
+            </Typography>
+          </Box>
           <Tooltip title="GitHub 링크" arrow sx={{ mr: 0.5 }}>
             <IconButton
               href="https://github.com/shine-jung/hanchelin-web"

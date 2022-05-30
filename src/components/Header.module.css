@@ -14,11 +14,19 @@
   height: 36px;
 }
 
-.title {
+.titleContainer {
   flex-grow: 1;
+  display: flex;
+}
+
+.title {
   white-space: nowrap;
   letter-spacing: 0.3rem;
   user-select: none;
+}
+
+.title:hover {
+  cursor: pointer;
 }
 
 .profile {
