@@ -27,9 +27,9 @@ function Login({ auth }) {
         }}
       >
         <Paper className={styles.container}>
-          <Typography className={styles.text} variant="h6">
-            <Box>밥고 뭐 먹을지 고민 될 땐?</Box>
-            <Box>한동맛나!</Box>
+          <Typography className={styles.text} variant="normal">
+            <Box>카카오, 에타 브라우저에서는</Box>
+            <Box>로그인을 지원하지 않습니다.</Box>
           </Typography>
           <Button onClick={onLogin} variant="contained" color="secondary">
             <img
