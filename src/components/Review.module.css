@@ -28,6 +28,17 @@
   margin: 0 1px;
 }
 
+.sortContainer {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0 1.5rem;
+}
+
+.sortText {
+  font-weight: 500;
+  margin: 0 8px;
+}
+
 .container {
   display: flex;
   padding: 0 1rem;

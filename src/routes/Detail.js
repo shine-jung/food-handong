@@ -5,6 +5,7 @@ import database from "../service/firebase";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Like from "../components/Like";
+import KakaoShare from "../components/KakaoShare";
 import Review from "../components/Review";
 import Map from "../components/Map";
 import {
@@ -17,8 +18,15 @@ import {
   ButtonBase,
   Tooltip,
   Popover,
+  Link,
 } from "@mui/material";
-import { faStar, faHeart, faComment } from "@fortawesome/free-solid-svg-icons";
+import {
+  faStar,
+  faHeart,
+  faComment,
+  faPhone,
+  faCaretDown,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./Detail.module.css";
 
@@ -71,10 +79,11 @@ function Detail({ auth }) {
               <Grid item xs={6}>
                 <Paper className={styles.section}>
                   <Box className={styles.infoHeader}>
-                    <Typography variant="h6">
-                      {restaurant.officialName}
-                    </Typography>
-                    <Like restaurant={restaurant} />
+                    <Typography variant="h6">{restaurant.name}</Typography>
+                    <Box>
+                      <Like restaurant={restaurant} />
+                      <KakaoShare restaurant={restaurant} />
+                    </Box>
                   </Box>
                   <Box className={styles.info}>
                     <img
@@ -118,6 +127,18 @@ function Detail({ auth }) {
                       <Typography className={styles.infoText}>
                         {restaurant.location}
                       </Typography>
+                      <Typography className={styles.infoText}>
+                        <Link
+                          href={`tel:${restaurant.contact}`}
+                          underline="none"
+                        >
+                          <FontAwesomeIcon
+                            className={styles.callIcon}
+                            icon={faPhone}
+                          />
+                          {restaurant.contact}
+                        </Link>
+                      </Typography>
                       <Box className={styles.hours}>
                         {restaurant.openingHours === "정보가 없어요" ? (
                           <Typography>영업시간 정보가 없어요 😭</Typography>
@@ -157,6 +178,12 @@ function Detail({ auth }) {
                                       </Typography>
                                     ))}
                                 </Box>
+                                <Typography
+                                  className={styles.caretDownIcon}
+                                  color="primary"
+                                >
+                                  <FontAwesomeIcon icon={faCaretDown} />
+                                </Typography>
                               </ButtonBase>
                             </Tooltip>
                             <Popover
@@ -180,7 +207,7 @@ function Detail({ auth }) {
                                         {day}요일 :
                                       </Typography>
                                       <Box>
-                                        {restaurant.openingHours[days[today]]
+                                        {restaurant.openingHours[day]
                                           .split("\n")
                                           .map((line, index) => (
                                             <Typography
@@ -201,25 +228,6 @@ function Detail({ auth }) {
                       </Box>
                     </Box>
                   </Box>
-                  {/* <Box>
-                      {days
-                      .filter((day) => restaurant.openingHours[day])
-                      .map((day, index) => (
-                        <Box key={index}>
-                          {day} :
-                          <Box>
-                            {restaurant.openingHours[day]
-                              .split("\n")
-                              .map((line, index) => (
-                                <Box key={index}>
-                                  {line}
-                                  <br />
-                                </Box>
-                              ))}
-                          </Box>
-                        </Box>
-                      ))}
-                    </Box> */}
                 </Paper>
                 <Paper className={styles.section}>
                   <Typography className={styles.title} variant="h6">

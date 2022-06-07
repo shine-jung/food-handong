@@ -4,11 +4,16 @@
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="한동인들을 위한 맛집 사이트" />
+    <meta property="og:title" content="한동맛나" />
+    <meta property="og:site_name" content="한동맛나" />
+    <meta property="og:type" content="website" />
     <meta
-      name="description"
-      content="Web site created using create-react-app"
+      property="og:image"
+      content="https://raw.githubusercontent.com/shine-jung/food-handong/master/public/thumbnail.png"
     />
+    <meta property="og:description" content="한동인들을 위한 맛집 사이트" />
+    <meta name="theme-color" content="#ffffff" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -24,16 +29,17 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <script
-      type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=07848cd6e3998b57736804afc9367510"
-    ></script>
     <title>한동맛나</title>
     <style>
       #map > div > div {
         box-shadow: none !important;
       }
     </style>
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=07848cd6e3998b57736804afc9367510"
+    ></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
       async

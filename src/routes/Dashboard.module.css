@@ -15,12 +15,12 @@
 }
 
 .container {
-  min-height: calc(100vh - 56px - 8rem - 47.5px);
+  min-height: calc(100vh - 56px - 8rem - 48.5px);
   padding: 5rem 5% 3rem;
 }
 
 .title {
-  padding: 0 15px 2rem 15px;
+  padding: 0 15px 2rem;
 }
 
 .restaurant {

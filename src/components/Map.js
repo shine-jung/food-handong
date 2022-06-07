@@ -19,53 +19,46 @@ const Map = ({ name, lat, lon, centerLocation }) => {
     console.log("위치 권한을 허용해 주세요");
   };
   useEffect(() => {
-    const { geolocation } = navigator;
     const mapContainer = document.getElementById("map");
     const mapOption = {
       center: new kakao.maps.LatLng(lat, lon),
       level: 2,
     };
     const map = new kakao.maps.Map(mapContainer, mapOption);
-    const bounds = new kakao.maps.LatLngBounds();
-    bounds.extend(new kakao.maps.LatLng(lat, lon));
-    bounds.extend(
-      new kakao.maps.LatLng(userPosition.latitude, userPosition.longitude)
-    );
     const zoomControl = new kakao.maps.ZoomControl();
-    const positions = [
-      {
+    const restaurantMapPosition = {
+      title: name,
+      latlng: new kakao.maps.LatLng(lat, lon),
+    };
+    const restaurantMarker = new kakao.maps.Marker({
+      position: restaurantMapPosition.latlng,
+      title: restaurantMapPosition.title,
+    });
+    restaurantMarker.setMap(map);
+    if (centerLocation) {
+      const { geolocation } = navigator;
+      geolocation.getCurrentPosition(handleSuccess, handleError);
+      const userMapPosition = {
         title: "내 위치",
         latlng: new kakao.maps.LatLng(
           userPosition.latitude,
           userPosition.longitude
         ),
-      },
-      {
-        title: name,
-        latlng: new kakao.maps.LatLng(lat, lon),
-      },
-    ];
-    const userMarker = new kakao.maps.Marker({
-      position: positions[0].latlng,
-      title: positions[0].title,
-    });
-    const restaurantMarker = new kakao.maps.Marker({
-      position: positions[1].latlng,
-      title: positions[1].title,
-    });
-    geolocation.getCurrentPosition(handleSuccess, handleError);
-    centerLocation && map.setBounds(bounds);
+      };
+      const userMarker = new kakao.maps.Marker({
+        position: userMapPosition.latlng,
+        title: userMapPosition.title,
+      });
+      const bounds = new kakao.maps.LatLngBounds();
+      bounds.extend(new kakao.maps.LatLng(lat, lon));
+      bounds.extend(
+        new kakao.maps.LatLng(userPosition.latitude, userPosition.longitude)
+      );
+      userMarker.setMap(map);
+      map.setBounds(bounds);
+    }
     map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-    userMarker.setMap(map);
-    restaurantMarker.setMap(map);
-  }, [
-    name,
-    lat,
-    lon,
-    centerLocation,
-    userPosition.latitude,
-    userPosition.longitude,
-  ]);
+  }, [centerLocation, userPosition.latitude, userPosition.longitude]);
   return (
     <div
       id="map"

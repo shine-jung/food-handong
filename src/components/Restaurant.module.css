@@ -35,17 +35,45 @@
   justify-content: space-between;
 }
 
-@media screen and (min-width: 400px) {
-  .textContainer {
-    display: flex;
-  }
+.recommend {
+  display: flex;
+  justify-content: flex-start;
+  word-break: keep-all;
+}
+
+.recommendIcon {
+  font-size: 14px;
+  padding: 3.5px 0 4.5px;
+  margin-right: 4px;
+}
+
+.category {
+  text-align: start;
 }
 
 .info {
-  width: 146px;
+  width: 125px;
 }
 
-.menu {
+@media screen and (min-width: 375px) {
+  .textContainer {
+    display: flex;
+  }
+  .recommend {
+    justify-content: flex-end;
+  }
+  .category {
+    text-align: end;
+  }
+}
+
+@media screen and (min-width: 390px) {
+  .info {
+    width: 140px;
+  }
+}
+
+.infoText {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

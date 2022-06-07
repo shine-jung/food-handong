@@ -1,8 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
 import { ref, onValue } from "firebase/database";
-import database from "../service/firebase";
+import {
+  collection,
+  getDocs,
+  query,
+  orderBy,
+  limit,
+} from "firebase/firestore/lite";
+import database, { firestore } from "../service/firebase";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Sidebar from "../components/Sidebar";
 import List from "../components/List";
 import { Box, InputBase, Select, MenuItem, styled } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
@@ -36,9 +44,15 @@ function Home({ auth }) {
   const [loading, setLoading] = useState(true);
   const [isLogin, setIsLogin] = useState(false);
   const [searchText, setSearchText] = useState("");
+  const [categoryText, setcategoryText] = useState("");
   const [sortBy, setSortBy] = useState("starAvg");
-  const [restaurants, setRestaurants] = useState([]);
+  const [recommendId, setRecommendId] = useState();
+  const [restaurants, setRestaurants] = useState();
+  const recommendRef = ref(database, "recommend");
   const restaurantsRef = ref(database, "restaurants");
+  const [reviewList, setReviewList] = useState([]);
+  const reviewsCol = collection(firestore, "reviews");
+  const q = query(reviewsCol, orderBy("uploadTime", "desc"), limit(4));
   const onLogout = useCallback(() => {
     auth.logout();
   }, [auth]);
@@ -46,11 +60,25 @@ function Home({ auth }) {
     auth.onAuthChange((user) => {
       user ? setIsLogin(true) : setIsLogin(false);
     });
+    getReviewList();
+    onValue(recommendRef, (snapshot) => {
+      const data = snapshot.val();
+      setRecommendId(data.recommendId);
+    });
     onValue(restaurantsRef, (snapshot) => {
-      const datas = Object.values(snapshot.val());
+      const datas = snapshot.val();
       setRestaurants(datas);
       setLoading(false);
     });
+    async function getReviewList() {
+      const reviewSnapshot = await getDocs(q);
+      setReviewList(
+        reviewSnapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }))
+      );
+    }
   }, []);
   return (
     <>
@@ -60,38 +88,48 @@ function Home({ auth }) {
       ) : (
         <Box className={styles.root}>
           <Box className={styles.container}>
-            <Box className={styles.header}>
-              <Box className={styles.searchBar}>
-                <SearchIcon className={styles.searchIcon} />
-                <InputBase
-                  className={styles.searchInput}
-                  onChange={(e) => setSearchText(e.target.value)}
-                  value={searchText}
-                  autoComplete="off"
-                  name="search"
-                  placeholder="식당, 음식, 카테고리, 지역 검색"
-                />
-              </Box>
-              <Box className={styles.selectContainer}>
-                <Select
-                  className={styles.select}
-                  value={sortBy}
-                  label="정렬"
-                  onChange={(e) => setSortBy(e.target.value)}
-                  input={<BootstrapInput />}
-                >
-                  <MenuItem value={"starAvg"}>별점순</MenuItem>
-                  <MenuItem value={"likes"}>좋아요순</MenuItem>
-                  <MenuItem value={"reviewCount"}>리뷰개수순</MenuItem>
-                  <MenuItem value={"name"}>식당이름순</MenuItem>
-                </Select>
-              </Box>
-            </Box>
-            <List
-              searchText={searchText}
-              sortBy={sortBy}
+            <Sidebar
               restaurants={restaurants}
+              reviewList={reviewList}
+              categoryText={categoryText}
+              setcategoryText={setcategoryText}
             />
+            <Box className={styles.headerContainer}>
+              <Box className={styles.header}>
+                <Box className={styles.searchBar}>
+                  <SearchIcon className={styles.searchIcon} />
+                  <InputBase
+                    className={styles.searchInput}
+                    onChange={(e) => setSearchText(e.target.value)}
+                    value={searchText}
+                    autoComplete="off"
+                    name="search"
+                    placeholder="식당, 음식, 카테고리, 지역 검색"
+                  />
+                </Box>
+                <Box className={styles.selectContainer}>
+                  <Select
+                    className={styles.select}
+                    value={sortBy}
+                    label="정렬"
+                    onChange={(e) => setSortBy(e.target.value)}
+                    input={<BootstrapInput />}
+                  >
+                    <MenuItem value={"starAvg"}>별점순</MenuItem>
+                    <MenuItem value={"likes"}>좋아요순</MenuItem>
+                    <MenuItem value={"reviewCount"}>리뷰개수순</MenuItem>
+                    <MenuItem value={"name"}>식당이름순</MenuItem>
+                  </Select>
+                </Box>
+              </Box>
+              <List
+                searchText={searchText}
+                categoryText={categoryText}
+                sortBy={sortBy}
+                restaurants={restaurants}
+                recommendId={recommendId}
+              />
+            </Box>
           </Box>
           <Footer />
         </Box>

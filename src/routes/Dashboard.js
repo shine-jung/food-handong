@@ -2,12 +2,13 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import database, { firebaseAuth, firestore } from "../service/firebase";
 import { ref, onValue } from "firebase/database";
-import { collection, getDocs } from "firebase/firestore/lite";
+import { collection, getDocs, query, where } from "firebase/firestore/lite";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Box, Paper, Grid, Typography, Rating } from "@mui/material";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import NorthEastIcon from "@mui/icons-material/NorthEast";
 import styles from "./Dashboard.module.css";
 import Restaurant from "../components/Restaurant";
 
@@ -18,7 +19,7 @@ function Dashboard({ auth }) {
   const [isLogin, setIsLogin] = useState(false);
   const [reviewList, setReviewList] = useState([]);
   const reviewsCol = collection(firestore, "reviews");
-  const [restaurantsObj, setRestaurantsObj] = useState([]);
+  const [restaurantsObj, setRestaurantsObj] = useState({});
   const restaurantsRef = ref(database, "restaurants");
   const onLogout = useCallback(() => {
     auth.logout();
@@ -27,18 +28,20 @@ function Dashboard({ auth }) {
     auth.onAuthChange((user) => {
       if (user) {
         setIsLogin(true);
+        const q = query(reviewsCol, where("uid", "==", user.uid));
+        onValue(restaurantsRef, (snapshot) => {
+          const datas = snapshot.val();
+          setRestaurantsObj(datas);
+          setLoading(false);
+        });
+        getReviewList(q);
       } else {
         setIsLogin(false);
         navigate({ pathname: "/" });
       }
-      onValue(restaurantsRef, (snapshot) => {
-        const datas = snapshot.val();
-        setRestaurantsObj(datas);
-        setLoading(false);
-      });
     });
-    async function getReviewList() {
-      const reviewSnapshot = await getDocs(reviewsCol);
+    async function getReviewList(query) {
+      const reviewSnapshot = await getDocs(query);
       setReviewList(
         reviewSnapshot.docs.map((doc) => ({
           ...doc.data(),
@@ -46,7 +49,6 @@ function Dashboard({ auth }) {
         }))
       );
     }
-    getReviewList();
   }, []);
   // https://gofnrk.tistory.com/117
   function displayedAt(uploadTime) {
@@ -116,64 +118,65 @@ function Dashboard({ auth }) {
                   내가 쓴 리뷰
                 </Typography>
                 {reviewList
-                  .filter((review) => review.visible && review.uid === user.uid)
                   .sort((a, b) => b.uploadTime - a.uploadTime)
                   .map((review) => (
-                    <Box key={review.id} className={styles.reviewcontainer}>
-                      <img
-                        className={styles.profileImg}
-                        src={review.photoURL}
-                        alt={review.displayName}
-                      />
-                      <Paper className={styles.content}>
-                        <Box className={styles.reviewHeader}>
-                          <Typography
-                            className={styles.reviewTitle}
-                            variant="normal"
-                          >
-                            {review.displayName}
-                            <Box className={styles.starInfo}>
-                              <Rating
-                                className={styles.stars}
-                                value={review.star}
-                                readOnly
-                                icon={
-                                  <FontAwesomeIcon
-                                    className={styles.starIcon}
-                                    icon={faStar}
-                                  />
-                                }
-                                emptyIcon={
-                                  <FontAwesomeIcon
-                                    className={styles.starIcon}
-                                    style={{ opacity: 0.55 }}
-                                    icon={faStar}
-                                  />
-                                }
-                              />
-                              <Typography>{review.star}</Typography>
-                            </Box>
+                    <Link
+                      key={review.id}
+                      className={styles.restaurantLink}
+                      to={`/restaurant/${review.restaurantId}`}
+                    >
+                      <Box className={styles.reviewcontainer}>
+                        <img
+                          className={styles.profileImg}
+                          src={review.photoURL}
+                          alt={review.displayName}
+                        />
+                        <Paper className={styles.content}>
+                          <Box className={styles.reviewHeader}>
+                            <Typography
+                              className={styles.reviewTitle}
+                              variant="normal"
+                            >
+                              {review.displayName}
+                              <Box className={styles.starInfo}>
+                                <Rating
+                                  className={styles.stars}
+                                  value={review.star}
+                                  readOnly
+                                  icon={
+                                    <FontAwesomeIcon
+                                      className={styles.starIcon}
+                                      icon={faStar}
+                                    />
+                                  }
+                                  emptyIcon={
+                                    <FontAwesomeIcon
+                                      className={styles.starIcon}
+                                      style={{ opacity: 0.55 }}
+                                      icon={faStar}
+                                    />
+                                  }
+                                />
+                                <Typography>{review.star}</Typography>
+                              </Box>
+                            </Typography>
+                            <Typography variant="normal" color="text.secondary">
+                              {displayedAt(review.uploadTime.toDate())}
+                            </Typography>
+                          </Box>
+                          <Typography className={styles.review} gutterBottom>
+                            {review.review}
                           </Typography>
-                          <Typography variant="normal" color="text.secondary">
-                            {displayedAt(review.uploadTime.toDate())}
-                          </Typography>
-                        </Box>
-                        <Typography className={styles.review} gutterBottom>
-                          {review.review}
-                        </Typography>
-                        <Link
-                          className={styles.restaurantLink}
-                          to={`/restaurant/${review.restaurantId}`}
-                        >
                           <Typography
                             className={styles.restaurantName}
                             color="secondary"
                           >
-                            {restaurantsObj[review.restaurantId].name} 보러 가기
+                            {restaurantsObj[review.restaurantId].name}
+                            <NorthEastIcon />
                           </Typography>
-                        </Link>
-                      </Paper>
-                    </Box>
+                        </Paper>
+                      </Box>
+                    </Link>
                   ))}
               </Grid>
             </Grid>

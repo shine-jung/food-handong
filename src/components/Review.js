@@ -7,11 +7,14 @@ import {
   addDoc,
   getDocs,
   deleteDoc,
+  query,
+  where,
 } from "firebase/firestore/lite";
 import database, { firebaseAuth, firestore } from "../service/firebase";
 import {
   Box,
   Button,
+  ButtonBase,
   Paper,
   Rating,
   Typography,
@@ -41,10 +44,12 @@ function Review({ restaurant }) {
   const [reviewList, setReviewList] = useState([]);
   const restaurantRef = ref(database, `restaurants/${restaurant.id}`);
   const reviewsCol = collection(firestore, "reviews");
+  const q = query(reviewsCol, where("restaurantId", "==", restaurant.id));
   const reviewCount = restaurant.reviewCount;
   const reviewedUser = restaurant.reviewedUser;
   const starCount = restaurant.starCount;
   const starSum = restaurant.starSum;
+  const [sortBy, setSortBy] = useState(true);
   useEffect(() => {
     getReviewList();
   }, []);
@@ -82,15 +87,6 @@ function Review({ restaurant }) {
     getReviewList();
     resetValues();
   }
-  async function getReviewList() {
-    const reviewSnapshot = await getDocs(reviewsCol);
-    setReviewList(
-      reviewSnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }))
-    );
-  }
   async function removeReview(reviewId, uid, star) {
     await deleteDoc(doc(firestore, "reviews", reviewId)).then(() => {
       update(restaurantRef, {
@@ -101,6 +97,15 @@ function Review({ restaurant }) {
       });
     });
     getReviewList();
+  }
+  async function getReviewList() {
+    const reviewSnapshot = await getDocs(q);
+    setReviewList(
+      reviewSnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }))
+    );
   }
   // https://gofnrk.tistory.com/117
   function displayedAt(uploadTime) {
@@ -160,11 +165,38 @@ function Review({ restaurant }) {
           </Button>
         </Box>
       </Paper>
+      <Box className={styles.sortContainer}>
+        <Typography
+          className={styles.sortText}
+          variant="normal"
+          color="text.secondary"
+        >
+          sort by:
+        </Typography>
+        <ButtonBase className={styles.sortText} onClick={() => setSortBy(true)}>
+          <Typography
+            variant="normal"
+            color={sortBy ? "secondary" : "rgb(156 163 175)"}
+          >
+            최신순
+          </Typography>
+        </ButtonBase>
+        <ButtonBase
+          className={styles.sortText}
+          onClick={() => setSortBy(false)}
+        >
+          <Typography
+            variant="normal"
+            color={sortBy ? "rgb(156 163 175)" : "secondary"}
+          >
+            오래된 순
+          </Typography>
+        </ButtonBase>
+      </Box>
       {reviewList
-        .filter(
-          (review) => review.visible && review.restaurantId === restaurant.id
+        .sort((a, b) =>
+          sortBy ? b.uploadTime - a.uploadTime : a.uploadTime - b.uploadTime
         )
-        .sort((a, b) => b.uploadTime - a.uploadTime)
         .map((review) => (
           <Box key={review.id} className={styles.container}>
             <img

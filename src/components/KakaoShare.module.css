@@ -1,0 +1,9 @@
+.kakaoBtn {
+  font-size: 2rem;
+  color: #f9e000;
+  transition: all 0.1s linear;
+}
+
+.kakaoBtn:hover {
+  transform: scale(1.1);
+}

@@ -26,6 +26,7 @@ function Profile({ auth }) {
         displayName: newDisplayName,
       }).then(() => {
         alert("프로필이 업데이트 되었습니다");
+        navigate({ pathname: "/" });
       });
     }
   };

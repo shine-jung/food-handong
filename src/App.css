@@ -1,12 +1,5 @@
 @import url("https://font.elice.io/EliceDigitalBaeum.css");
-
-@font-face {
-  font-family: "SpoqaHanSansNeo";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff")
-    format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
+@import url("https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css");
 
 body {
   margin: 0;

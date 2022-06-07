@@ -4,6 +4,7 @@ import { ref, onValue, update } from "firebase/database";
 import database, { firebaseAuth } from "../service/firebase";
 import { Tooltip, ButtonBase } from "@mui/material";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as faEmptyHeart } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./Like.module.css";
 
@@ -43,15 +44,17 @@ function Like({ restaurant }) {
   }
   return (
     <>
-      <Tooltip title={isLiked ? "좋아요 취소" : "좋아요"} placement="top" arrow>
-        <ButtonBase
-          onClick={likeBtnClick}
-          sx={{
-            color: isLiked ? "#ff6666" : "rgb(218, 218, 218)",
-          }}
-          disableRipple
-        >
-          <FontAwesomeIcon className={styles.likeBtn} icon={faHeart} />
+      <Tooltip
+        className={styles.likeBtnContainer}
+        title={isLiked ? "좋아요 취소" : "좋아요"}
+        placement="top"
+        arrow
+      >
+        <ButtonBase onClick={likeBtnClick} disableRipple>
+          <FontAwesomeIcon
+            className={styles.likeBtn}
+            icon={isLiked ? faHeart : faEmptyHeart}
+          />
         </ButtonBase>
       </Tooltip>
     </>

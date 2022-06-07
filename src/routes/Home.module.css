@@ -6,8 +6,9 @@
 }
 
 .container {
-  min-height: calc(100vh - 56px - 8rem - 47.5px);
+  min-height: calc(100vh - 56px - 8rem - 48.5px);
   padding: 3rem 5% 5rem;
+  display: flex;
 }
 
 .loader {
@@ -17,6 +18,10 @@
   justify-content: center;
   align-items: center;
   font-weight: 300;
+}
+
+.headerContainer {
+  width: 100%;
 }
 
 .header {
@@ -70,7 +75,6 @@
 
 .searchInput {
   width: 225px;
-  color: "text.primary";
   font-size: 16px;
   padding-right: 8px;
 }
