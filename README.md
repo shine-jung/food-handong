@@ -23,4 +23,4 @@
 
 ## 🛠 Built With
 
-![Dependency](https://github.com/shine-jung/food-handong/blob/master/Built-With.png)
+![Dependency](https://github.com/shine-jung/food-handong/blob/master/public/techstack.png)
