@@ -1,5 +1,12 @@
 # 한동맛나
 
+<p>
+<!--  버전  -->
+<!--  커밋  -->
+  <img alt="React" src="https://img.shields.io/static/v1.svg?label=&message=React&style=flat-square&logo=React&logoColor=white&color=61dafb">
+<!--  라이센스  -->
+</p>
+
 ## 🖖 Introduction
 
 [한동맛나](https://food.handong.us/)는 한동인들을 위한 맛집 웹 어플리케이션입니다.
@@ -13,3 +20,7 @@
 > - 🥘 식당 상세정보 보기
 > - ❤️ 식당 즐겨찾기
 > - ⭐️ 평점과 리뷰 남기기
+
+## 🛠 Built With
+
+![Dependency](https://github.com/shine-jung/food-handong/blob/master/Built-With.png)
