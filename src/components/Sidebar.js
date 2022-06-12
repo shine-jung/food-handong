@@ -23,7 +23,10 @@ function Sidebar({ restaurants, reviewList, categoryText, setcategoryText }) {
       <Typography className={styles.title}>카테고리</Typography>
       <Typography
         className={styles.category}
-        onClick={() => setcategoryText("")}
+        onClick={() => {
+          setcategoryText("");
+          window.scrollTo(0, 0);
+        }}
       >
         <Box sx={{ color: categoryText === "" ? "#333" : "#777" }}>
           전체보기 (124)
@@ -33,7 +36,10 @@ function Sidebar({ restaurants, reviewList, categoryText, setcategoryText }) {
         <Typography
           key={category}
           className={styles.category}
-          onClick={() => setcategoryText(category)}
+          onClick={() => {
+            setcategoryText(category);
+            window.scrollTo(0, 0);
+          }}
         >
           <Box sx={{ color: categoryText === category ? "#333" : "#777" }}>
             {category} ({categoryCount[index]})
