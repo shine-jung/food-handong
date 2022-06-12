@@ -18,7 +18,7 @@ function Like({ restaurant }) {
   useEffect(() => {
     onValue(restaurantRef, (snapshot) => {
       const data = snapshot.val();
-      setIsLiked(user && data.likedUser && data.likedUser.includes(user.uid));
+      setIsLiked(user && data.likedUser?.includes(user.uid));
       setLikes(data.likes);
       setLikedUser(data.likedUser);
     });

@@ -59,7 +59,7 @@ function Review({ restaurant }) {
         navigate({ pathname: "/login" });
       return;
     }
-    if (restaurant.reviewedUser && restaurant.reviewedUser.includes(user.uid)) {
+    if (restaurant.reviewedUser?.includes(user.uid)) {
       alert("이미 리뷰를 작성하셨습니다 🥺");
       return;
     }
@@ -236,7 +236,7 @@ function Review({ restaurant }) {
               </Box>
               <Typography className={styles.review}>{review.review}</Typography>
               <Box className={styles.removeBtn}>
-                {user && user.uid === review.uid && (
+                {user?.uid === review.uid && (
                   <Tooltip title="리뷰 삭제" arrow>
                     <IconButton
                       onClick={() => {

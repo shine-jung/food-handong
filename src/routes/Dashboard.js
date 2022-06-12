@@ -87,10 +87,8 @@ function Dashboard({ auth }) {
                   내가 좋아요 한 식당들
                 </Typography>
                 {Object.values(restaurantsObj)
-                  .filter(
-                    (restaurant) =>
-                      restaurant.likedUser &&
-                      restaurant.likedUser.includes(user.uid)
+                  .filter((restaurant) =>
+                    restaurant.likedUser?.includes(user.uid)
                   )
                   .sort((a, b) => {
                     if (
