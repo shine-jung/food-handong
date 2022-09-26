@@ -97,7 +97,7 @@ function Home({ auth }) {
             <Box className={styles.headerContainer}>
               <Box className={styles.header}>
                 <Box className={styles.searchBar}>
-                  <SearchIcon className={styles.searchIcon} />
+                  <SearchIcon fontSize="large" className={styles.searchIcon} />
                   <InputBase
                     className={styles.searchInput}
                     onChange={(e) => setSearchText(e.target.value)}
