@@ -2,7 +2,6 @@
   width: 100%;
   min-height: calc(100vh - 56px);
   margin-top: 56px;
-  background-color: rgb(249 250 251);
 }
 
 .loader {
@@ -16,7 +15,6 @@
 
 .container {
   min-height: calc(100vh - 56px - 8rem - 48.5px);
-  padding: 5rem 5% 3rem;
 }
 
 .title {

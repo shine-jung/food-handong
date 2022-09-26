@@ -37,16 +37,12 @@ function Restaurant({ restaurant, recommend = false }) {
               {restaurant.dong}
             </Typography>
             <Typography variant="body2" color="text.secondary" gutterBottom>
-              {restaurant.menus[0] && (
-                <Box className={styles.infoText}>
-                  {restaurant.menus[0].title}
-                </Box>
-              )}
-              {restaurant.menus[1] && (
-                <Box className={styles.infoText}>
-                  {restaurant.menus[1].title}
-                </Box>
-              )}
+              <Box className={styles.infoText}>
+                {restaurant.menus[0]?.title}
+              </Box>
+              <Box className={styles.infoText}>
+                {restaurant.menus[1]?.title}
+              </Box>
             </Typography>
           </Box>
           <Box>
