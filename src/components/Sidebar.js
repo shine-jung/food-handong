@@ -48,7 +48,7 @@ function Sidebar({ restaurants, reviewList, categoryText, setcategoryText }) {
       ))}
       <Typography className={styles.title}>최근 리뷰</Typography>
       {reviewList.map((review) => (
-        <Box key={review.id} className={styles.content}>
+        <Box key={review.id} className={styles.content} mb={0.5}>
           <Link
             className={styles.restaurantLink}
             to={`/restaurant/${review.restaurantId}`}

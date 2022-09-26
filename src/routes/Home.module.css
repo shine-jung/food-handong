@@ -68,6 +68,7 @@
 }
 
 .searchIcon {
+  font-size: 40px;
   color: rgba(0, 0, 0, 0.7);
   padding: 0 5px 0 10px;
   margin-right: 2px;

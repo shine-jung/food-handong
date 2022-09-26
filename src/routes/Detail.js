@@ -19,6 +19,7 @@ import {
   Tooltip,
   Popover,
   Link,
+  Container,
 } from "@mui/material";
 import {
   faStar,
@@ -70,10 +71,10 @@ function Detail({ auth }) {
         <Box className={styles.loader}>Loading...</Box>
       ) : (
         <Box className={styles.root}>
-          <Box className={styles.container}>
+          <Box component={Container} pt={10}>
             <Grid
               container
-              spacing={{ xs: 0, md: "2%" }}
+              spacing={{ xs: 0, md: 4 }}
               columns={{ xs: 6, md: 12 }}
             >
               <Grid item xs={6}>

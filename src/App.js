@@ -8,6 +8,7 @@ import {
   createTheme,
   ThemeProvider,
   StyledEngineProvider,
+  CssBaseline,
 } from "@mui/material";
 import "./App.css";
 
@@ -35,6 +36,10 @@ const theme = createTheme({
       primary: "hsl(210,8%,15%)",
       secondary: "hsl(210,8%,45%)",
     },
+    background: {
+      default: "#F9FAFA",
+      paper: "#FFFFFF",
+    },
   },
   typography: {
     fontFamily: "'Elice Digital Baeum', sans-serif",
@@ -50,6 +55,7 @@ function App({ auth }) {
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
+        <CssBaseline />
         <Routes>
           <Route path="/login" element={<Login auth={auth} />} />
           <Route path="/" element={<Home auth={auth} />} />

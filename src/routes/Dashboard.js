@@ -5,7 +5,7 @@ import { ref, onValue } from "firebase/database";
 import { collection, getDocs, query, where } from "firebase/firestore/lite";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { Box, Paper, Grid, Typography, Rating } from "@mui/material";
+import { Box, Paper, Grid, Typography, Rating, Container } from "@mui/material";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NorthEastIcon from "@mui/icons-material/NorthEast";
@@ -76,7 +76,7 @@ function Dashboard({ auth }) {
         <Box className={styles.loader}>Loading...</Box>
       ) : (
         <Box className={styles.root}>
-          <Box className={styles.container}>
+          <Box component={Container} pt={10} className={styles.container}>
             <Grid
               container
               spacing={{ xs: 0, md: "2%" }}
