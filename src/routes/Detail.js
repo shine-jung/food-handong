@@ -281,12 +281,20 @@ function Detail({ auth }) {
                       </Button>
                     </Tooltip>
                   </Box>
-                  <Map
+                  {/* <Map
                     name={restaurant.name}
                     lat={restaurant.lat}
                     lon={restaurant.lon}
                     centerLocation={centerLocation}
-                  />
+                  /> */}
+                  <Box
+                    height={300}
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <Typography>카카오맵 에러 (2022.10.15 ~ )</Typography>
+                  </Box>
                 </Paper>
               </Grid>
               <Grid item xs={6}>
